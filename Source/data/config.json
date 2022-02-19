@@ -1,0 +1,24 @@
+{
+  "SoftApConfig": {
+    "ssid": "Garage_AP",
+    "pw": "garage_pass"
+  },
+  "ServerConfig": {
+    "hostname": "garage_test"
+  },
+  "ApplConfig": {
+    "door_up": 2651,
+    "door_mid": 1302,
+    "door_down": 393
+  },
+  "StaConfig": [
+    {
+      "ssid": "",
+      "pw": ""
+    },
+    {
+      "ssid": "MNAccessPoint-2",
+      "pw": "TheQuickBrownFoxJumpsOverTheLazyDog!"
+    }
+  ]
+}

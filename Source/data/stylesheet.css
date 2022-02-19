@@ -1,0 +1,21 @@
+body { 
+	text-align:	center;
+	background: linear-gradient(white, skyblue); 
+	background-size: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+button	{
+	border: none;
+	background: transparent;
+	padding:	0;
+}
+img	{
+	width:	150px;
+	height:	auto;
+}
+
+input:invalid {
+	border: 1px solid red;
+}

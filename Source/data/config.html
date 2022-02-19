@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config Garage</title>
+	<link rel="stylesheet" href="stylesheet_config.css" media="all">
+
+	<script src="configscript.js"></script>
+	<!---	<script src="http:<!---george.fritz.box/script.js"></script>  --->
+  </head>
+  <body>
+    <h1>Config Garage</h1>
+<!---    <form id="setsta1" action="http:<!---ptsv2.com/t/u7inm-1635697967/post" method="post" >  --->
+    <form id="setsta1" action="/settings" method="post">
+<!---      <fieldset> --->
+        <table align="center">
+        <tr border="0">
+        <td><label for="stassid1">SSID1</label></td>
+        <td><input id="stassid1" name="stassid1" maxlength="32" autocomplete="off" size="34em" value="%STA0SSID%"></td>
+        </tr>
+        <tr>
+        <td><label for="stapasswd1">Passwort1</label></td>
+        <td><input id="stapasswd1" name="stapasswd1" maxlength="64" value="%STA0PWD%" autocomplete="off" size="34em"></td>
+        </tr>
+        <tr>
+        <td colspan="2"><button name="action" value="setstaclient1" >Speichere Client1</button></td>
+        </tr>
+        </table>
+<!---      </fieldset> --->
+        </form>
+
+    <form id="setsta2" action="/settings" method="post" >  
+<!---      <fieldset> --->
+        <table align="center">
+        <tr>
+        <td><label for="stassid2">SSID2</label></td>
+        <td><input id="stassid2" name="stassid2" maxlength="32" autocomplete="off" size="34em" value="%STA1SSID%"></td>
+        </tr>
+        <tr>
+        <td><label for="stapasswd2">Passwort2</label></td>
+        <td><input id="stapasswd2" name="stapasswd2" maxlength="64" size="34em" value="%STA1PWD%" autocomplete="off"></td>
+        </tr>
+        <tr>
+        <td colspan="2"><button name="action" value="setstaclient2" >Speichere Client2</button></td>
+        </tr>
+        </table>
+<!---     </fieldset> --->
+    </form>
+    
+    <form id="sethostname" action="/settings" method="post" >  
+<!---     <fieldset> --->
+        <table align="center">
+        <tr>
+        <td><label for="sethost">Hostame</label></td>
+        <td><input id="sethost" name="hostname" maxlength="32" size="34em" autocomplete="off" value="%SERVERHOSTNAME%"></td>
+        </tr>
+        <tr>
+        <td colspan="2"><button name="action" value="sethostname" >Speichere Hostname</button></td>
+        </tr>
+        </table>
+<!---     </fieldset> --->
+    </form>
+    
+<form id="setADCvalues" action="/settings" method="post" >  
+<!---     <fieldset> --->
+        <table align="center">
+        <tr>
+        <td><label for="door_up">Door_Up</label></td>
+        <td><input id="door_up" name="door_up" type="number" min="0" max="999999" size="8em" autocomplete="off" inputmode="numeric" value="%ADC_DOOR_UP%"></td>
+        <td><button  type="button" id="button_door_up" name="action" value="read_door_up" >Akt. ADC Wert</button></td>
+        </tr>
+        <tr>
+        <td><label for="door_mid">Door_Middle</label></td>
+        <td><input id="door_mid" name="door_mid" type="number" min="0" max="999999" size="8em" autocomplete="off" inputmode="numeric" value="%ADC_DOOR_MID%"></td>
+        <td><button  type="button" id="button_door_mid" name="action" value="read_door_mid" >Akt. ADC Wert</button></td>
+        </tr>
+        <td><label for="door_down">Door_Down</label></td>
+        <td><input id="door_down" name="door_down" type="number" min="0" max="999999" size="8em" autocomplete="off" inputmode="numeric" value="%ADC_DOOR_DWN%"></td>
+        <td><button  type="button" id="button_door_down" name="action" value="read_door_down" >Akt. ADC Wert</button></td>
+        </tr>
+        <tr>
+        <td colspan="3"><button name="action" value="set_door_values" >Speichere Tor-Werte</button></td>
+        </tr>
+        </table>
+<!---     </fieldset> --->
+    </form>
+  </body>
+</html>
