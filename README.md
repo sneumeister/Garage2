@@ -7,6 +7,5 @@ Im Endeffekt wird der manuelle Schalter durch den ESP32 betätigt.
 
 Durch das web-Frontende und entsprechende HTTP-GET und HTTP-POST Aufrufe, lässt sich diese Garagentorsteuerung dann auch via Home-Automation-Systeme (z.B. NodeRED) in andere Grafische Front-Ends integrieren.
 
-#Ansicht im Web-Browser
-
+# Ansicht im Web-Browser
 ![AnimatedScreenPlay](Pictures/animationGIF.gif)
