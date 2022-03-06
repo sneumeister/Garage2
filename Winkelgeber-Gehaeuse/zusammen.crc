@@ -1,0 +1,22 @@
+﻿  Modell ZUSAMMEN: 
+ 
+
+  1 Zirkulärer-Bezug-Schleifen gefunden
+ 
+
+   Schleife Nr. 1
+
+   Schleifentiefe beträgt 4
+
+KE-Nummer 6 (KOMPONENTE, ID = 22) 
+  in Modell ZUSAMMEN verweist auf:
+
+KE-Nummer 60 (PROFIL_29, ID = 2759) 
+  in Modell GEHAEUSE2 muss folgen nach:
+
+KE-Nummer 16 (BEZUGSEBENE, ID = 375) 
+  in Modell GEHAEUSE2 verweist auf:
+
+KE-Nummer 6 (KOMPONENTE, ID = 22) 
+  in Modell ZUSAMMEN - Kreis geschlossen.
+
