@@ -21,4 +21,8 @@ Hat sich der ESP in Ihrem WLAN-Netz angemeldet, erfolgt der aufruf über die erh
 Sollte der ESP32 keine WLAN-Verbindung bekommen schaltet er automatisch zuusätzlich einen AP frei.
 Sofern in der Konfiguration nicht geändert kann dann mit z.B. dem Mobil-Telefon nach der SSID "Garage_AP" gesucht und mit Passwort "garage_pass" ein Verbindung hergestellt werden. Falls Sie nicht direkt auf die Konfigurations-Seite gelangen (Landing Page), dann im Web-Browser irgendeine Web-Adresse eingeben.
 ## Konfiguration
-Ergänzen Sie den [Basis-Aufruf]()
+Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen ins Konfigurations-Menü.
+z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192.168.178.70/config](http://192.168.178.70/config)
+
+tbd.
+....
