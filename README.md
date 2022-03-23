@@ -46,7 +46,7 @@ tbd.
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
 | Element          | Datei               | Code                                                      | Bemerkung                                       |
 | ---------------- | -----------------   | -------------------------------------------------------   | ----------------------------------------------  |
-| Version Info     | `_sketchversion.h`  | `#define SKETCHNAME  "Garagensteuerung"` `#define SKETCHVERSION "$Ver 2.0"` `#define SKETCHDATE  "2022-02-06"`                 | Versions Informationen, die mittels             |
+| Version Info     | `_sketchversion.h`  | `#define SKETCHNAME  "Garagensteuerung"`<br> `#define SKETCHVERSION "$Ver 2.0"` `#define SKETCHDATE  "2022-02-06"`                 | Versions Informationen, die mittels             |
 |                  |                     |                         | `http://garage/version` abgefragt werden können;|
 |                  |                     |                        | zusätzlich Datum/Zeit des Compiler-Runs         |
 | OTA Passwort     | `myArduinoOTA.h`    |`#define PASSWORD_HASH  "`0000";`                          | Over-The-Air Update Passwort als MD5-Hash       |
