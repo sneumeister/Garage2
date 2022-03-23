@@ -44,21 +44,27 @@ tbd.
 
 # Hard-Coded Konfiguration
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
-| Element          | Datei               | Code                                                      | Bemerkung                                       |
-| ---------------- | -----------------   | -------------------------------------------------------   | ----------------------------------------------  |
-| Version Info     | [_sketchversion.h](Source/_sketchversion.h)  |
+### Version Info
+Datei: [_sketchversion.h](Source/_sketchversion.h)
 ```
 #define SKETCHNAME    "Garagensteuerung"
 #define SKETCHVERSION "$Ver 2.0"
 #define SKETCHDATE    "2022-02-06"
-```                                                         | Versions Informationen, die mittels `http://garage/version` abgefragt werden können; zusätzlich Datum/Zeit des Compiler-Runs |
+```
+Versions Informationen, die mittels `http://garage/version` abgefragt werden können; zusätzlich Datum/Zeit des Compiler-Runs
 
+### OTA Update Passwort (Over-The-Air Update Passwort)
+Datei: [myArduinoOTA.h](Source/myArduinoOTA.h)
+`#define PASSWORD_HASH  "0000";      // MD5-Hash`
+oder
+`#define PASSWORD_TEXT  "Text";      // Passwort im Klartext`
+Over-The-Air Update Passwort als MD5-Hash oder im Klartext
 
-| OTA Passwort     | [myArduinoOTA.h](Source/myArduinoOTA.h)    |`#define PASSWORD_HASH  "`0000";`                          | Over-The-Air Update Passwort als MD5-Hash       |
-|                  |                     |`#define PASSWORD_TEXT  "Text";`                           | oder im Klartext                                |
-| Hardware:Relais  | `hardwareRelated.h` |`const int cfg_relais_pin      = 25;'                      | An diesem Pin hängt das Relais....              |
-|                  |                     | `const int cfg_relais_active   = LOW;`                    | Schliesst das Relais bei LOW oder HIGH ?        |
-|                  |                     | `const int cfg_signal_led      = 13;`                     | An diesem Pin hängt die Signal-LED              |
-|                  |                     | `const int cfg_signal_active   = HIGH;`                   | Leuchtet die LED bei HIGH oder LOW              |
-|                  |                     | `const adc1_channel_t    cfg_adc_input = ADC1_CHANNEL_4;` | ADC-Kanal hier: `ADC1 channel 4 an GPIO32`      |
+### Hardware:Relais
+Datei: [hardwareRelated.h](Source/hardwareRelated.h)
+`const int cfg_relais_pin              = 25;            `  An diesem Pin hängt das Relais....
+`const int cfg_relais_active           = LOW;           `  Schliesst das Relais bei LOW oder HIGH ?
+`const int cfg_signal_led              = 13;            `  An diesem Pin hängt die Signal-LED
+`const int cfg_signal_active           = HIGH;          `  Leuchtet die LED bei HIGH oder LOW?
+`const adc1_channel_t    cfg_adc_input = ADC1_CHANNEL_4;`  ADC-Kanal hier: ADC1 channel 4 an GPIO32   
 
