@@ -60,7 +60,7 @@ Datei: [myArduinoOTA.h](Source/myArduinoOTA.h)
 // oder
 #define PASSWORD_TEXT  "Text";      // Passwort im Klartext
 ```
-Over-The-Air Update Passwort als MD5-Hash oder im Klartext
+Over-The-Air Update Passwort als MD5-Hash *oder* im Klartext
 
 ### Hardware: Relais, LED, ADC
 Datei: [hardwareRelated.h](Source/hardwareRelated.h)
