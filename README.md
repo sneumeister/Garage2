@@ -46,7 +46,7 @@ tbd.
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
 | Element          | Datei               | Code                                                      | Bemerkung                                       |
 | ---------------- | -----------------   | -------------------------------------------------------   | ----------------------------------------------  |
-| Version Info     | `_sketchversion.h`  | `#define&nbsp;SKETCHNAME  "Garagensteuerung"`<br>`#define SKETCHVERSION "$Ver 2.0"`<br>`#define SKETCHDATE  "2022-02-06"`| Versions Informationen, die mittels `http://garage/version` abgefragt werden können; zusätzlich Datum/Zeit des Compiler-Runs |
+| Version Info     | `_sketchversion.h`  | #define&nbsp;SKETCHNAME&nbsp;"Garagensteuerung"<br>`#define SKETCHVERSION "$Ver 2.0"`<br>`#define SKETCHDATE  "2022-02-06"`| Versions Informationen, die mittels `http://garage/version` abgefragt werden können; zusätzlich Datum/Zeit des Compiler-Runs |
 | OTA Passwort     | `myArduinoOTA.h`    |`#define PASSWORD_HASH  "`0000";`                          | Over-The-Air Update Passwort als MD5-Hash       |
 |                  |                     |`#define PASSWORD_TEXT  "Text";`                           | oder im Klartext                                |
 | Hardware:Relais  | `hardwareRelated.h` |`const int cfg_relais_pin      = 25;'                      | An diesem Pin hängt das Relais....              |
