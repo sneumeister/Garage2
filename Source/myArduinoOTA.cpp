@@ -6,17 +6,21 @@
 //**********************************************************
 //********** ArduinoOTA definitions...
 void setupArduinoOTA(const char* cfg_hostname){
-  const char* OtaPasswordHash = PASSWORD_HASH;
+//  const char* OtaPasswordHash = PASSWORD_HASH;
   
   #ifdef AOTA_PORT
     ArduinoOTA.setPort(3232);            // Port defaults to 3232
   #endif
   
   ArduinoOTA.setHostname(cfg_hostname);  // Hostname defaults to esp3232-[MAC]
-  // ArduinoOTA.setPassword("admin"); // No authentication by default
-  // Password can be set with it's md5 value as well
-  // MD5(Garagensteuerung!) = f8695e6ee86ea0b76ebbbe9023f6ae70
-  ArduinoOTA.setPasswordHash(OtaPasswordHash);
+
+  #ifdef    PASSWORD_HASH
+    ArduinoOTA.setPasswordHash(PASSWORD_HASH);
+  #endif
+  #ifdef    PASSWORD_TEXT
+    ArduinoOTA.setPassword(PASSWORD_TEXT)
+  #endif  
+  
   ArduinoOTA
     .onStart([]() {
       String OTAtype;

@@ -12,8 +12,9 @@
 
 //#define AOTA_PORT 3232   // Default-Port: 3232
 
-// ArduinoOTA.setPassword("admin"); // No authentication by default
-// Password can be set with it's md5 value as well
+// ArduinoOTA-Passwort entweder als Klartext...
+//#define PASSWORD_TEXT "Garagensteuerung!"
+// oder als MD%-Hash
 // MD5(Garagensteuerung!) = f8695e6ee86ea0b76ebbbe9023f6ae70
 #define PASSWORD_HASH  "f8695e6ee86ea0b76ebbbe9023f6ae70";
 
