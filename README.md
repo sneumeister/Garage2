@@ -11,7 +11,20 @@ CAD+STL Daten für Winkelgebergehäuse finden sich im Verzeichnis [Winkelgeber-G
 Durch das web-Frontende und entsprechende HTTP-GET und HTTP-POST Aufrufe, lässt sich diese Garagentorsteuerung dann auch via Home-Automation-Systeme (z.B. NodeRED) in andere Grafische Front-Ends integrieren.
 
 # Ansicht im Web-Browser
+## Animation mit simuliertem Push-Button
 ![AnimatedScreenPlay](Pictures/animationGIF.gif)
+## Fehlerbilder
+Temporärer Verbindungverlust: einzelne Statusabfragen an den Garagen-Server blieben ohne Antwort (Status also unbekannt).
+Das Browser-Skript versucht aber weiterhin den Status abzufragen.
+Ohne gültigen Garagen-Status wird der Button blockiert; symbolisiert durch Verbotszeichen).
+
+![tmpConnectionLost](Pictures/tmpLostConnection.gif)
+
+Dauerhafter Verbindungsverlust: Laufen mehrere Status-Abfragen an den Garagen-Server ins Leere (erhalten kein Antwort), dann wird das Abfrage-Skript im Browser komplett beendet und die Button-Abfrage dauerhaft deaktiviert.
+In diesem Zusatnd erfolgt kein selbständiger Re-Connect zum Server; dies muss manuell durch ein Reload (Erneut laden) in Browser angestossen werden.
+
+![brokenConnection](Pictures/brokenConnection.gif)
+
 
 # URL Aufrufe
 ## Basis-Aufruf
