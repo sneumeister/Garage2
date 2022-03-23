@@ -17,10 +17,12 @@ Durch das web-Frontende und entsprechende HTTP-GET und HTTP-POST Aufrufe, lässt
 Temporärer Verbindungverlust: einzelne Statusabfragen an den Garagen-Server blieben ohne Antwort (Status also unbekannt).
 Das Browser-Skript versucht aber weiterhin den Status bbzufragen.
 Ohne gültigen Garagen-Status wird der Button blockiert; symbolisiert durch Verbotszeichen auf dem Button).
+
 ![tmpConnectionLost](Pictures/tmpLostConnection.gif)
 
 Dauerhafter Verbindungsverlust: Laufen mehrere Status-Abfragen an den Garagen-Server ins Leere (erhalten kien Antwort), dann wird das Abfrage-Skript im Browser komplett beendet und die Button-Abfrage dauerhaft deaktiviert.
 In diesem Zusatnd erfolgt kein selbstaändiger Re-Connect zum Server; dies muss manuell durch ein reload (erneut laden) in Browser angestossen werden.
+
 ![brokenConnection](Pictures/brokenConnection.gif)
 
 
