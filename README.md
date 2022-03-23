@@ -44,7 +44,7 @@ tbd.
 
 # Hard-Coded Konfiguration
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
-### Version Info
+## Version Info
 Datei: [_sketchversion.h](Source/_sketchversion.h)
 ```
 #define SKETCHNAME    "Garagensteuerung"
@@ -53,7 +53,7 @@ Datei: [_sketchversion.h](Source/_sketchversion.h)
 ```
 Versions Informationen, die mittels `http://garage/version` abgefragt werden können; zusätzlich Datum/Zeit des Compiler-Runs
 
-### OTA Update Passwort (Over-The-Air Update Passwort)
+## OTA Update Passwort (Over-The-Air Update Passwort)
 Datei: [myArduinoOTA.h](Source/myArduinoOTA.h)
 ```
 #define PASSWORD_HASH  "0000";      // MD5-Hash
@@ -62,7 +62,7 @@ Datei: [myArduinoOTA.h](Source/myArduinoOTA.h)
 ```
 Over-The-Air Update Passwort als MD5-Hash *oder* im Klartext
 
-### Hardware: Relais, LED, ADC
+## Hardware: Relais, LED, ADC
 Datei: [hardwareRelated.h](Source/hardwareRelated.h)
 ```
 const int             cfg_relais_pin      = 25;             //  An diesem Pin hängt das Relais....
