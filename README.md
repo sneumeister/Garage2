@@ -57,9 +57,7 @@ Versions Informationen, die mittels `http://garage/version` abgefragt werden kö
 Datei: [myArduinoOTA.h](Source/myArduinoOTA.h)
 ```
 #define PASSWORD_HASH  "0000";      // MD5-Hash
-```
-oder
-```
+// oder
 #define PASSWORD_TEXT  "Text";      // Passwort im Klartext
 ```
 Over-The-Air Update Passwort als MD5-Hash oder im Klartext
