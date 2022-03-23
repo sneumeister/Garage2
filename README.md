@@ -62,11 +62,14 @@ Datei: [myArduinoOTA.h](Source/myArduinoOTA.h)
 ```
 Over-The-Air Update Passwort als MD5-Hash oder im Klartext
 
-### Hardware:Relais
+### Hardware: Relais, LED, ADC
 Datei: [hardwareRelated.h](Source/hardwareRelated.h)
-`const int cfg_relais_pin              = 25;            `  An diesem Pin hängt das Relais....
-`const int cfg_relais_active           = LOW;           `  Schliesst das Relais bei LOW oder HIGH ?
-`const int cfg_signal_led              = 13;            `  An diesem Pin hängt die Signal-LED
-`const int cfg_signal_active           = HIGH;          `  Leuchtet die LED bei HIGH oder LOW?
-`const adc1_channel_t    cfg_adc_input = ADC1_CHANNEL_4;`  ADC-Kanal hier: ADC1 channel 4 an GPIO32   
+```
+const int             cfg_relais_pin      = 25;             //  An diesem Pin hängt das Relais....
+const int             cfg_relais_active   = LOW;            // Schliesst das Relais bei LOW oder HIGH ?
 
+const int             cfg_signal_led      = 13;             //  An diesem Pin hängt die Signal-LED
+const int             cfg_signal_active   = HIGH;           //  Leuchtet die LED bei HIGH oder LOW?
+
+const adc1_channel_t  cfg_adc_input       = ADC1_CHANNEL_4; //  ADC-Kanal hier: ADC1 channel 4 an GPIO32   
+```
