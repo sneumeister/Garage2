@@ -43,7 +43,7 @@ z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192
 
 <table>
  <tr>
-   <td> ![ConfigScreen](Pictures/configscreen.gif) </td>
+   <td> <img src="Pictures/configscreen.gif" alt="ConfigScreen"></td>
    <td> SSID </td>
  </tr>
 </table>
