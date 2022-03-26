@@ -39,13 +39,19 @@ Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen in
 
 z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192.168.178.70/config](http://192.168.178.70/config)
 
+
 ![ConfigSSID](Pictures/config02.gif)
 
 SSID und Passwort von bis zu 2 Access-Points. Die Garagensteuerung versucht nacheinander einen der beiden AP zu kontaktieren. Sind SSID und Passwort leer, dann wird dieser Eintrag übersprungen. Die Settings für SSID1 und SSID2 können getrennt mit den entsprechenden Button gespeichert werden.
 
-![ConfigSSID](Pictures/config03.gif)
+![ConfigHostname](Pictures/config03.gif)
 
-![ConfigSSID](Pictures/config04.gif)
+Hostname zum Login an vorhandes WLAN benuztzt wird (falls unterstützt).
+
+
+![ConfigLevel](Pictures/config04.gif)
+
+
 
 
 # Hard-Coded Konfiguration
