@@ -16,7 +16,7 @@
 //#define PASSWORD_TEXT "Garagensteuerung!"
 // oder als MD%-Hash
 // MD5(Garagensteuerung!) = f8695e6ee86ea0b76ebbbe9023f6ae70
-#define PASSWORD_HASH  "f8695e6ee86ea0b76ebbbe9023f6ae70";
+#define PASSWORD_HASH  "f8695e6ee86ea0b76ebbbe9023f6ae70"
 
 //*******************************************************
 //*** function proto-types.
