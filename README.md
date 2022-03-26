@@ -56,7 +56,7 @@ z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192
 
 <table cellspacing=0>
  <tr>
-   <td> <img src="Pictures/config01.gif" alt="config01" width="100%"></td>
+   <td width="50%"> <img src="Pictures/config01.gif" alt="config01" ></td>
    <td> SSID </td>
  </tr>
  <tr>
