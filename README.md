@@ -1,4 +1,4 @@
-# Garage
+# Garage2
 Garagentorsteuerung mit ESP32 und Web-Frontend
 
 Dieses Projekt ergänzt die Handsender eines SOMFY Garagentorantriebs um ein Web-Frontend, welches per Mobil-Telefon oder PC-Browser angesprochen werden kann.
@@ -39,8 +39,32 @@ Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen in
 
 z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192.168.178.70/config](http://192.168.178.70/config)
 
-tbd.
-....
+![ConfigScreen](Pictures/configscreen.gif)
+
+<table>
+ <tr>
+   <td> <img src="Pictures/config01.gif" alt="config01"></td>
+   <td> SSID </td>
+ </tr>
+ <tr>
+   <td> <img src="Pictures/config02.gif" alt="config02"></td>
+   <td> SSID </td>
+ </tr>
+ <tr>
+   <td> <img src="Pictures/config03.gif" alt="config03"></td>
+   <td> SSID </td>
+ </tr>
+ <tr>
+   <td> <img src="Pictures/config04.gif" alt="config04"></td>
+   <td> SSID </td>
+ </tr>
+ <tr>
+   <td> <img src="Pictures/config05.gif" alt="config05"></td>
+   <td> SSID </td>
+ </tr>
+
+</table>
+
 
 # Hard-Coded Konfiguration
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
