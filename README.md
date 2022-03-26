@@ -39,44 +39,8 @@ Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen in
 
 z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192.168.178.70/config](http://192.168.178.70/config)
 
-![ConfigScreen](Pictures/configscreen.gif)
-
-<table>
- <tr>
-   <td rowspan="4"> <img src="Pictures/configscreen.gif" alt="ConfigScreen"></td>
-   <td> &nbsp; </td>
- </tr>
- <tr><td>SSID und Passwort von bis zu 2 Access-Points. Die Garagensteuerung versucht nacheinander einen der beiden AP zu kontaktieren. Sind SSID und Passwort leer, dann wird dieser Eintrag übersprungen. Die Settings für SSID1 und SSID2 können getrennt mit den entsprechenden Button gespeichert werden.</td> </tr>
- <tr><td>SSID4</td> </tr>
- <tr><td>SSID5</td> </tr>
- 
-</table>
-
-
-
-<table cellspacing=0>
- <tr>
-   <td width="50%"> <img src="Pictures/config01.gif" alt="config01" ></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config02.gif" alt="config02"></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config03.gif" alt="config03"></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config04.gif" alt="config04"></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config05.gif" alt="config05"></td>
-   <td> SSID </td>
- </tr>
-
-</table>
+![ConfigSSID](Pictures/config01.gif)
+SSID und Passwort von bis zu 2 Access-Points. Die Garagensteuerung versucht nacheinander einen der beiden AP zu kontaktieren. Sind SSID und Passwort leer, dann wird dieser Eintrag übersprungen. Die Settings für SSID1 und SSID2 können getrennt mit den entsprechenden Button gespeichert werden.
 
 
 # Hard-Coded Konfiguration
