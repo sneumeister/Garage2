@@ -47,7 +47,6 @@ z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192
    <td> &nbsp; </td>
  </tr>
  <tr><td>SSID2</td> </tr>
- <tr> </tr>
  <tr><td>SSID4</td> </tr>
  <tr><td>SSID5</td> </tr>
  
