@@ -39,31 +39,17 @@ Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen in
 
 z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192.168.178.70/config](http://192.168.178.70/config)
 
-![ConfigScreen](Pictures/configscreen.gif)
 
-<table>
- <tr>
-   <td> <img src="Pictures/config01.gif" alt="config01"></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config02.gif" alt="config02"></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config03.gif" alt="config03"></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config04.gif" alt="config04"></td>
-   <td> SSID </td>
- </tr>
- <tr>
-   <td> <img src="Pictures/config05.gif" alt="config05"></td>
-   <td> SSID </td>
- </tr>
+![ConfigSSID](Pictures/config02.gif)
 
-</table>
+SSID und Passwort von bis zu 2 Access-Points. Die Garagensteuerung versucht nacheinander einen der beiden AP zu kontaktieren. Sind SSID und Passwort leer, dann wird dieser Eintrag übersprungen. Die Settings für SSID1 und SSID2 können getrennt mit den entsprechenden Button gespeichert werden.
+
+![ConfigHostname](Pictures/config03.gif)
+
+Hostname Login an vorhandes WLAN benuztzt wird (falls vom Access-point unterstützt).
+
+![ConfigLevel](Pictures/config04.gif)
+Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der Torstellung. Dabei ist es egal, wie der Poti verdrahtet ist, also ob ***door_up***&nbsp;>&nbsp;***door_down*** oder ***door_up***&nbsp;<&nbsp;***door_down***. Dies wird von der Software bereücksichtigt. Um die Konfiguration zu vereinfachten, kann der aktuelle ADC-Wert per Button ausgelesen und ins entsprechende Feld eingetragen werden. Sprich: Tor in entsprechende Stellung fahren und Wert auslesen durch ***Akt. ADC Wert***.
 
 
 # Hard-Coded Konfiguration
