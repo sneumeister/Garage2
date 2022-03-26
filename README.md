@@ -54,21 +54,22 @@ Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der T
 <tabel>
   <tr>
     <td><img src="Pictures/garage1_small.gif" Alt="ConfigDoor_Up"></td>
-    <td> ADC-Wert &gt; ***Door_Up***</t>
+    <td> ADC-Wert &gt; Door_Up</td>
   </tr>
   <tr>
     <td><img src="Pictures/garage2_small.gif" Alt="ConfigDoor_Not_Up"></td>
-    <td>ADC-Wert &gt; ***Door_Up***</t>
+    <td>ADC-Wert &gt; Door_Up</td>
   </tr>
   <tr>
     <td><img src="Pictures/garage3_small.gif" Alt="ConfigDoor_Not_Down"></td>
-    <td>ADC-Wert &gt; ***Door_Up***</t>
+    <td>ADC-Wert &gt; Door_Up</td>
   </tr>
   <tr>
     <td><img src="Pictures/garage4_small.gif" Alt="ConfigDoor_Down"></td>
-    <td>ADC-Wert &gt; ***Door_Up***</t>
+    <td>ADC-Wert &gt; ***Door_Up***</td>
   </tr>
 </table>
+
 ![ConfigDoor_Up](Pictures/garage1_small.gif)
 
 ![ConfigDoor_Not_Up](Pictures/garage2_small.gif)
