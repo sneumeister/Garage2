@@ -43,9 +43,26 @@ z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192
 
 <table>
  <tr>
-   <td> <img src="Pictures/configscreen.gif" alt="ConfigScreen"></td>
+   <td> <img src="Pictures/config01.gif" alt="config01"></td>
    <td> SSID </td>
  </tr>
+ <tr>
+   <td> <img src="Pictures/config02.gif" alt="config02"></td>
+   <td> SSID </td>
+ </tr>
+ <tr>
+   <td> <img src="Pictures/config03.gif" alt="config03"></td>
+   <td> SSID </td>
+ </tr>
+ <tr>
+   <td> <img src="Pictures/config04.gif" alt="config04"></td>
+   <td> SSID </td>
+ </tr>
+ <tr>
+   <td> <img src="Pictures/config05.gif" alt="config05"></td>
+   <td> SSID </td>
+ </tr>
+
 </table>
 
 
