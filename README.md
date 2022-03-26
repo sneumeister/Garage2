@@ -38,9 +38,16 @@ Sofern in der Konfiguration nicht geändert kann dann mit z.B. dem Mobil-Telefon
 Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen ins Konfigurations-Menü.
 
 z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192.168.178.70/config](http://192.168.178.70/config)
+
 ![ConfigScreen](Pictures/configscreen.gif)
-tbd.
-....
+
+<table>
+ <tr>
+   <td> ![ConfigScreen](Pictures/configscreen.gif) </td>
+   <td> SSID </td>
+ </tr>
+</table>
+
 
 # Hard-Coded Konfiguration
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
