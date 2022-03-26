@@ -1,4 +1,4 @@
-# Garage
+# Garage2
 Garagentorsteuerung mit ESP32 und Web-Frontend
 
 Dieses Projekt ergänzt die Handsender eines SOMFY Garagentorantriebs um ein Web-Frontend, welches per Mobil-Telefon oder PC-Browser angesprochen werden kann.
@@ -38,7 +38,7 @@ Sofern in der Konfiguration nicht geändert kann dann mit z.B. dem Mobil-Telefon
 Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen ins Konfigurations-Menü.
 
 z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192.168.178.70/config](http://192.168.178.70/config)
-
+![ConfigScreen](Pictures/configscreen.gif)
 tbd.
 ....
 
