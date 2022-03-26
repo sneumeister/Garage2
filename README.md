@@ -43,10 +43,10 @@ z.B. [http://garage/config](http://garage/config)  oder beispielhaft [http://192
 
 <table>
  <tr>
-   <td rowspan="5"> <img src="Pictures/configscreen.gif" alt="ConfigScreen"></td>
+   <td rowspan="4"> <img src="Pictures/configscreen.gif" alt="ConfigScreen"></td>
    <td> &nbsp; </td>
  </tr>
- <tr><td rowspan="2">SSID2</td> </tr>
+ <tr><td>SSID2</td> </tr>
  <tr> </tr>
  <tr><td>SSID4</td> </tr>
  <tr><td>SSID5</td> </tr>
