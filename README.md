@@ -60,9 +60,9 @@ Datei: [myArduinoOTA.h](Source/myArduinoOTA.h)
 // oder
 #define PASSWORD_TEXT  "Garagensteuerung!";                // Passwort im Klartext
 ```
-Over-The-Air Update Passwort als MD5-Hash *oder* im Klartext
+Over-The-Air Update via ArduinoIDE; Passwort als MD5-Hash *oder* im Klartext
 
-## Hardware: Relais, LED, ADC
+## Hardware: Relais, LED, ADC...
 Datei: [hardwareRelated.h](Source/hardwareRelated.h)
 ```
 const int            cfg_relais_pin    = 25;             //  An diesem Pin hängt das Relais....
