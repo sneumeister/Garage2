@@ -49,7 +49,7 @@ SSID und Passwort von bis zu 2 Access-Points. Die Garagensteuerung versucht nach
 Hostname Login an vorhandes WLAN benuztzt wird (falls vom Access-point unterstützt).
 
 ![ConfigLevel](Pictures/config04.gif)
-Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der Torstellung. Dabei ist es egal, wie der Poti verdrahtet ist, also ob *door_up*>*door_down* oder *door_up*<*door_down*. Dies wird von der Software bereücksichtigt. Um die Konfiguration zu vereinfachten, kann der aktuelle ADC-Wert per Button ausgelesen und ins entsprechende Feld eingetragen werden. Sprich: Tor in entsprechende Stellung fahren und Wert auslesen durch *Akt. ADC Wert*.
+Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der Torstellung. Dabei ist es egal, wie der Poti verdrahtet ist, also ob *door_up*&nbsp;>&nbsp;*door_down* oder *door_up*&nbsp;<&nbsp;*door_down*. Dies wird von der Software bereücksichtigt. Um die Konfiguration zu vereinfachten, kann der aktuelle ADC-Wert per Button ausgelesen und ins entsprechende Feld eingetragen werden. Sprich: Tor in entsprechende Stellung fahren und Wert auslesen durch *Akt. ADC Wert*.
 
 
 
