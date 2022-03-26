@@ -52,13 +52,13 @@ Hostname Login an vorhandes WLAN benuztzt wird (falls vom Access-point unterstü
 
 Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der Torstellung. Dabei ist es egal, wie der Poti verdrahtet ist, also ob ***door_up***&nbsp;>&nbsp;***door_down*** oder ***door_up***&nbsp;<&nbsp;***door_down***. Dies wird von der Software bereücksichtigt. Um die Konfiguration zu vereinfachten, kann der aktuelle ADC-Wert per Button ausgelesen und ins entsprechende Feld eingetragen werden. Sprich: Tor in entsprechende Stellung fahren und Wert auslesen durch ***Akt. ADC Wert***.
 
-![ConfigDoor_Up](Pictures/garage0_small.gif.gif)
+![ConfigDoor_Up](Pictures/garage0_small.gif)
 
-![ConfigDoor_Not_Up](Pictures/garage1_small.gif.gif)
+![ConfigDoor_Not_Up](Pictures/garage1_small.gif)
 
-![ConfigDoor_Not_Down](Pictures/garage2_small.gif.gif)
+![ConfigDoor_Not_Down](Pictures/garage2_small.gif)
 
-![ConfigDoor_Down](Pictures/garage0_small.gif.gif)
+![ConfigDoor_Down](Pictures/garage0_small.gif)
 
 # Hard-Coded Konfiguration
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
