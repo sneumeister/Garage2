@@ -54,11 +54,11 @@ Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der T
 
 ![ConfigDoor_Up](Pictures/garage1_small.gif)
 
-![ConfigDoor_Not_Up](Pictures/garage1_small.gif)
+![ConfigDoor_Not_Up](Pictures/garage2_small.gif)
 
-![ConfigDoor_Not_Down](Pictures/garage2_small.gif)
+![ConfigDoor_Not_Down](Pictures/garage3_small.gif)
 
-![ConfigDoor_Down](Pictures/garage0_small.gif)
+![ConfigDoor_Down](Pictures/garage4_small.gif)
 
 # Hard-Coded Konfiguration
 Folgende Daten sind fest im Programm hinterlegt und vor dem Compiler-Aufruf anzupassen. Eine Änderung während der Laufzeit ist nicht möglich.
