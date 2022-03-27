@@ -312,6 +312,6 @@ void loop() {
 //    DEBUG_PRINTS("Loop...\n");
   }
   loopArduinoOTA();               //**** Call ArduinoOTA-Handler...
-  dnsServer.processNextRequest(); //**** DNS
+  //dnsServer.processNextRequest(); //**** DNS
 
 }
