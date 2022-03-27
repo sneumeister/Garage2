@@ -150,6 +150,7 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - HTTP-Methode: *GET*
 - HTTP-Parameter: ---
 - Response-MIME-Type: *text/plain*
+- Response-Code: *200*
 - Bemerkung: Gibt den RSSI der WiFi-Verbindung zurück.
 - Beispiel-Ausgabe: `-80`
 
@@ -158,6 +159,7 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - HTTP-Methode: *GET*
 - HTTP-Parameter: ---
 - Response-MIME-Type: *text/plain*
+- Response-Code: *200*
 - Bemerkung: Gibt den aktuellen Wert des Analog-Digital-Converters zurück und damit Winkelstellung des Tores.
 - Beispiel-Ausgabe: `4095`
 
@@ -166,12 +168,28 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - HTTP-Methode: *GET*
 - HTTP-Parameter: ---
 - Response-MIME-Type: *text/plain*
+- Response-Code: *200*
 - Bemerkung: Ein Wert zwischen 0 und 3, der die aktuelle Stellung des Tores darstellt. Man könnte auch "bewerteter ADC-Wert" sagen.
   - 0 = komplett offen
   - 1 = nicht ganz offen
   - 2 = nicht ganz geschlossen
   - 3 = komplett geschlossen
 - Beispiel-Ausgabe: `0`
+
+### Data: ***Knopf-druck senden***
+- HTTP-URL: http://garage/push_the_button
+- HTTP-Methode: *POST*
+- HTTP-Parameter: action=push
+- Response-MIME-Type: *text/plain*
+- Response-Code: 
+ - *202* = OK
+ - *400* = Fehler
+- Bemerkung: Der Aufruf mit dem Parameter "action=push" schaltet das Relais simuliert damit den Tastendruck zum Öfnne/Schliessen des Garagentors.
+- Beispiel-Ausgabe:
+ -  `Done.` mit Response-Code *202*, wenn OK.
+ -  `Error: wrong magic word!` mit Response-Code *400*, wenn Fehlgeschlagen.
+
+
 
 
 
