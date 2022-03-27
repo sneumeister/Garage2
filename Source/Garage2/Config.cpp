@@ -25,17 +25,17 @@
 
 //---------- Setting Default values ------------------------------------------------
 void setDefaultConfig(ConfigStruct &config) {
-    strcpy(config.StaCfg[0].StaSsid, "");
-    strcpy(config.StaCfg[0].StaPassphrase, "");
-    strcpy(config.StaCfg[1].StaSsid, "");
-    strcpy(config.StaCfg[1].StaPassphrase, "");
+    strcpy(config.StaCfg[0].StaSsid, DEF_STA_SSID_0);
+    strcpy(config.StaCfg[0].StaPassphrase, DEF_STA_PASS_0);
+    strcpy(config.StaCfg[1].StaSsid, DEF_STA_SSID_1);
+    strcpy(config.StaCfg[1].StaPassphrase, DEF_STA_PASS_1);
     config.curStaConfigs = 0;
-    strcpy(config.SoftApCfg.SoftApSsid, "AP_Garage_AP");
-    strcpy(config.SoftApCfg.SoftApPasspphrase, "password");
-    strcpy(config.ServerCfg.hostname, "Garage");
-    config.ApplCfg.door_up   = 2650;
-    config.ApplCfg.door_mid  = 1300;
-    config.ApplCfg.door_down = 390;
+    strcpy(config.SoftApCfg.SoftApSsid, DEF_SOFT_AP_SSID);
+    strcpy(config.SoftApCfg.SoftApPasspphrase, DEF_SOFT_AP_PASS);
+    strcpy(config.ServerCfg.hostname, DEF_HOSTNAME);
+    config.ApplCfg.door_up   = DEF_DOOR_UP;
+    config.ApplCfg.door_mid  = DEF_DOOR_MID;
+    config.ApplCfg.door_down = DEF_DOOR_DOWN;
 }
 
 //---------- Start of StaConfig-Parse ----------------------------------------------

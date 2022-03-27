@@ -4,21 +4,21 @@
     "pw": "garage_pass"
   },
   "ServerConfig": {
-    "hostname": "garage_test"
+    "hostname": "garage"
   },
   "ApplConfig": {
-    "door_up": 2651,
-    "door_mid": 1302,
-    "door_down": 393
+    "door_up": 2650,
+    "door_mid": 1300,
+    "door_down": 390
   },
   "StaConfig": [
     {
-      "ssid": "",
-      "pw": ""
-    },
-    {
       "ssid": "MNAccessPoint-2",
       "pw": "TheQuickBrownFoxJumpsOverTheLazyDog!"
+    },
+    {
+      "ssid": "FritzensBox24",
+      "pw": "TheQuickBrownFoxJumpsOverTheLazyDog"
     }
   ]
 }

@@ -14,6 +14,26 @@
                      "door_mid" : 1300,
                      "door_down" : 390 }
 ---*/
+
+//********* Default values if "config.json" not found or parameter sets missing
+
+//**** No WiFi-Data by Default ==> Start Soft-ACessPoint....
+#define DEF_STA_SSID_0        ""            // First SSID - try to connect...
+#define DEF_STA_PASS_0        ""            // First Password
+#define DEF_STA_SSID_1        ""            // Second SSID - try to connect...
+#define DEF_STA_PASS_1        ""            // Second Password
+//**** Default hostname...
+#define DEF_HOSTNAME          "garage"      // default hostname
+//**** SoftAP data...
+#define DEF_SOFT_AP_SSID      "Garage_AP"   // Default SoftAP SSID
+#define DEF_SOFT_AP_PASS      "garage_pass" // Default SoftAP PassPhrase
+//**** Default ADC-Values to determin door_level...
+#define DEF_DOOR_UP           2650
+#define DEF_DOOR_MID          1300
+#define DEF_DOOR_DOWN         390
+
+//*****************************************************
+
 struct StaConfig {
   char StaSsid[32];            //SSID for STA-Mode
   char StaPassphrase[64];      //PassPhrase for STA-Mode
