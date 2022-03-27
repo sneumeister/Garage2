@@ -52,7 +52,7 @@ SSID und Passwort von bis zu 2 Access-Points. Die Garagensteuerung versucht nach
 
 ![ConfigHostname](Pictures/config03.gif)
 
-Hostname Login an vorhandes WLAN benuztzt wird (falls vom Access-point unterstützt).
+Hostname, der zum Login an vorhandes WLAN benuztzt wird (falls vom Access-point unterstützt; sonst im Router konfigurieren).
 
 ![ConfigLevel](Pictures/config04.gif)
 
