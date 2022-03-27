@@ -184,10 +184,10 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - Response-Code: 
  - *202* = OK
  - *400* = Fehler
-- Bemerkung: Der Aufruf mit dem Parameter "action=push" schaltet das Relais simuliert damit den Tastendruck zum Öfnne/Schliessen des Garagentors.
+- Bemerkung: Der Aufruf mit dem Parameter "action=push" schaltet das Relais zum Öfnne/Schliessen des Garagentors.
 - Beispiel-Ausgabe:
- -  `Done.` mit Response-Code *202*, wenn OK.
- -  `Error: wrong magic word!` mit Response-Code *400*, wenn Fehlgeschlagen.
+  - `Done.` mit Response-Code *202*, wenn OK.
+  - `Error: wrong magic word!` mit Response-Code *400*, wenn Fehlgeschlagen.
 
 
 
