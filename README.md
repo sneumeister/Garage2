@@ -166,11 +166,11 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - HTTP-Methode: *GET*
 - HTTP-Parameter: ---
 - Response-MIME-Type: *text/plain*
-- Bemerkung: Ein Wert zwischen 0 und 3, der die aktuelle Stellung des Tores darstellt. Man könnte auch "bewerteter ADC-Wert" sagen.<br>
-  0 = komplett offen<br>
-  1 = nicht ganz offen<br>
-  2 = nicht ganz geschlossen<br>
-  3 = komplett geschlossen
+- Bemerkung: Ein Wert zwischen 0 und 3, der die aktuelle Stellung des Tores darstellt. Man könnte auch "bewerteter ADC-Wert" sagen.
+  - 0 = komplett offen
+  - 1 = nicht ganz offen
+  - 2 = nicht ganz geschlossen
+  - 3 = komplett geschlossen
 - Beispiel-Ausgabe: `0`
 
 
