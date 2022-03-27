@@ -145,6 +145,14 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - Bemerkung: Versions-Informationen aus [_sketchversion.h](Source/_sketchversion.h) und Kompilierungsdatum
 - Beispiel-Ausgabe:<br> `Garagensteuerung $Ver 2.0.1 (2022-03-26)\n Compiled 2022-03-26 - 17:00:19`
 
+### Data: ***RSSI-Wert***
+- HTTP-URL: http://garage/raw_rssi
+- HTTP-Methode: *GET*
+- HTTP-Parameter: ---
+- Response-MIME-Type: *text/plain*
+- Bemerkung: Gibt den RSSI der WiFi-Verbindung zurück.
+- Beispiel-Ausgabe: `-80`
+
 ### Data: ***ADC-Wert***
 - HTTP-URL: http://garage/raw_adc
 - HTTP-Methode: *GET*
@@ -152,6 +160,21 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - Response-MIME-Type: *text/plain*
 - Bemerkung: Gibt den aktuellen Wert des Analog-Digital-Converters zurück und damit Winkelstellung des Tores.
 - Beispiel-Ausgabe: `4095`
+
+### Data: ***Tor-Stellung***
+- HTTP-URL: http://garage/doorlevel
+- HTTP-Methode: *GET*
+- HTTP-Parameter: ---
+- Response-MIME-Type: *text/plain*
+- Bemerkung: Ein Wert zwischen 0 und 3, der die aktuelle Stellung des Tores darstellt. Man könnte auch "bewerteter ADC-Wert" sagen.<br>
+  0 = komplett offen<br>
+  1 = nicht ganz offen<br>
+  2 = nicht ganz geschlossen<br>
+  3 = komplett geschlossen
+- Beispiel-Ausgabe: `0`
+
+
+
 
 
 
