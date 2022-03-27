@@ -25,7 +25,7 @@ int door_level(int adc_val, const ApplConfig &ApCfg) {
   bool door_open_big = (ApCfg.door_up > ApCfg.door_down );// TRUE  ==> hoher ADC Wert: Tor OBEN , niedriger ADC Wert: Tor UNTEN
   int door_level=0;                                       // für Door_level Pictogram:  0=ganz offe.... 3=ganz zu
   
-  signalLed("...");                                       //*** 3x short für Tor-Abfrage....
+ // signalLed("...");      // ..wird schon bei Web-Server-Event aufgerufen      //*** 3x short für Tor-Abfrage....
   DEBUG_PRINT("door_level: adc_val=", adc_val); DEBUG_PRINTLN();
   
   if ( door_open_big ) {     // Door_open = high_value (e.g 400....3500)
