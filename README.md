@@ -33,7 +33,12 @@ Hat sich der ESP in Ihrem WLAN-Netz angemeldet, erfolgt der aufruf über die erh
 [http://garage](http://garage)  oder beispielhaft [http://192.168.178.70](http://192.168.178.70)
 ## Aufruf im Access-Point (AP) Modus
 Sollte der ESP32 keine WLAN-Verbindung bekommen schaltet er automatisch zuusätzlich einen AP frei.
-Sofern in der Konfiguration nicht geändert kann dann mit z.B. dem Mobil-Telefon nach der SSID "Garage_AP" gesucht und mit Passwort "garage_pass" ein Verbindung hergestellt werden. Falls Sie nicht direkt auf die Konfigurations-Seite gelangen (Landing Page), dann im Web-Browser irgendeine Web-Adresse eingeben.
+- Standard AP SSID: ***Garage_AP***
+- Standard AP Pass: ***garage_pass***
+Diese Vorgaben sind in der Datei [config.json](Source/Garage2/data/config.json) hinterlegt. Eine Änderung via [Config-Menü](README.md#konfiguration-zur-laufzeit) zur Laufzeit ist nicht vorgesehen.
+
+Somit kann dann z.B. mit dem Mobil-Telefon nach der SSID "Garage_AP" gesucht und mit Passwort "garage_pass" ein Verbindung hergestellt werden. Falls Sie nicht direkt auf die Konfigurations-Seite gelangen (Landing Page), dann im Web-Browser irgendeine Web-Adresse eingeben. Der integrierte DNS-Server liefert immer die selbe URL zurück.
+
 ## Konfiguration zur Laufzeit
 Ergänzen Sie den [Basis-Aufruf](#basis-aufruf) um "/config" und Sie gelangen ins Konfigurations-Menü.
 
@@ -54,23 +59,46 @@ Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der T
 <table>
   <tr>
     <td><img src="Pictures/garage1_small.gif" Alt="ConfigDoor_Up"></td>
-    <td><b><l>ADC-Wert</l></b><br>
-                       &nbsp;&nbsp;&nbsp;Door_Up<br>
-                       &nbsp;&nbsp;&nbsp;Door_Middle<br>
-                       &nbsp;&nbsp;&nbsp;Door_Down<br>
-                       &nbsp;</td>
+    <td><b><i>ADC-Wert</i></b><br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Up<br>
+      .<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Middle<br>
+      .<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Down<br>
+      .
+    </td>
   </tr>
   <tr>
     <td><img src="Pictures/garage2_small.gif" Alt="ConfigDoor_Not_Up"></td>
-    <td>ADC-Wert &gt; Door_Up</td>
+    <td>.<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Up<br>
+      <b><i>ADC-Wert</i></b><br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Middle<br>
+      .<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Down<br>
+       .
+    </td>
   </tr>
   <tr>
     <td><img src="Pictures/garage3_small.gif" Alt="ConfigDoor_Not_Down"></td>
-    <td>ADC-Wert &gt; Door_Up</td>
+    <td>.<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Up<br>
+      .<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Middle<br>
+      <b><i>ADC-Wert</i></b><br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Down<br>
+      .
+    </td>
   </tr>
   <tr>
     <td><img src="Pictures/garage4_small.gif" Alt="ConfigDoor_Down"></td>
-    <td>ADC-Wert &gt; ***Door_Up***</td>
+    <td>.<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Up<br>
+      .<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Middle<br>
+      .<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Door_Down<br>
+      <b><i>ADC-Wert</i></b>
   </tr>
 </table>
 
