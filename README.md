@@ -51,15 +51,13 @@ Hostname Login an vorhandes WLAN benuztzt wird (falls vom Access-point unterstü
 ![ConfigLevel](Pictures/config04.gif)
 
 Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der Torstellung. Dabei ist es egal, wie der Poti verdrahtet ist, also ob ***door_up***&nbsp;>&nbsp;***door_down*** oder ***door_up***&nbsp;<&nbsp;***door_down***. Dies wird von der Software bereücksichtigt. Um die Konfiguration zu vereinfachten, kann der aktuelle ADC-Wert per Button ausgelesen und ins entsprechende Feld eingetragen werden. Sprich: Tor in entsprechende Stellung fahren und Wert auslesen durch ***Akt. ADC Wert***.
-<table cellpadding="0">
+<table>
   <tr>
     <td><img src="Pictures/garage1_small.gif" Alt="ConfigDoor_Up"></td>
-    <td> <p align="left">ADC-Wert </p>
-                       <p alighn="right">Door_Up</p>
-                       &nbsp;<br>
-                       Door_Middle<br>
-                       &nbsp;<br>
-                       Door_Down<br>
+    <td>**ADC-Torstellung**<br>
+                       &nbsp;&nbsp;&nbsp;Door_Up<br>
+                       &nbsp;&nbsp;&nbsp;Door_Middle<br>
+                       &nbsp;&nbsp;&nbsp;Door_Down<br>
                        &nbsp;</td>
   </tr>
   <tr>
