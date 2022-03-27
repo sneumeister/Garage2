@@ -137,12 +137,21 @@ const adc1_channel_t cfg_adc_input     = ADC1_CHANNEL_4; //  ADC-Kanal hier: ADC
 # Integration in Home-Automation-Systeme
 Im Folgenden ein paar nutzliche URL-Aufrufe, die zur Integration in Systeme wie [Node-RED](https://nodered.org/) benutzt werden.
 Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
-### Information: ***Version***
+### Data: ***Version***
 - HTTP-URL: http://garage/version
-- HTTP-Methode: GET
+- HTTP-Methode: *GET*
 - HTTP-Parameter: ---
+- Response-MIME-Type: *text/plain*
 - Bemerkung: Versions-Informationen aus [_sketchversion.h](Source/_sketchversion.h) und Kompilierungsdatum
 - Beispiel-Ausgabe:<br> `Garagensteuerung $Ver 2.0.1 (2022-03-26)\n Compiled 2022-03-26 - 17:00:19`
+
+### Data: ***ADC-Wert***
+- HTTP-URL: http://garage/raw_adc
+- HTTP-Methode: *GET*
+- HTTP-Parameter: ---
+- Response-MIME-Type: *text/plain*
+- Bemerkung: Gibt den aktuellen Wert des Analog-Digital-Converters zurück und damit Winkelstellung des Tores.
+- Beispiel-Ausgabe: `4095`
 
 
 
