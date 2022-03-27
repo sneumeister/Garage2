@@ -125,7 +125,7 @@ Over-The-Air Update via ArduinoIDE; Passwort als MD5-Hash *oder* im Klartext
 
 ## Hardware: Relais, LED, ADC...
 Datei: [hardwareRelated.h](Source/hardwareRelated.h)
-```
+```    
 const int            cfg_relais_pin    = 25;             //  An diesem Pin hängt das Relais....
 const int            cfg_relais_active = LOW;            // Schliesst das Relais bei LOW oder HIGH ?
 
@@ -134,3 +134,15 @@ const int            cfg_signal_active = HIGH;           //  Leuchtet die LED be
 
 const adc1_channel_t cfg_adc_input     = ADC1_CHANNEL_4; //  ADC-Kanal hier: ADC1 channel 4 an GPIO32   
 ```
+# Integration in Home-Automation-Systeme
+Im Folgenden ein paar nutzliche URL-Aufrufe, die zur Integration in Systeme wie [Node-RED](https://nodered.org/) benutzt werden.
+Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
+### Information: ***Version***
+- HTTP-URL: http://garage/version
+- HTTP-Methode: GET
+- HTTP-Parameter: ---
+- Bemerkung: Versions-Informationen aus [_sketchversion.h](Source/_sketchversion.h) und Kompilierungsdatum
+- Beispiel-Ausgabe:<br> `Garagensteuerung $Ver 2.0.1 (2022-03-26)\n Compiled 2022-03-26 - 17:00:19`
+
+
+
