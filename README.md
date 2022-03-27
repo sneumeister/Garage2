@@ -189,10 +189,12 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
   - `Done.` mit Response-Code *202*, wenn OK.
   - `Error: wrong magic word!` mit Response-Code *400*, wenn Fehlgeschlagen.
 
-
-
-
-
-
-
+### Data: ***Hallo***
+- HTTP-URL: http://garage/hello
+- HTTP-Methode: *GET*
+- HTTP-Parameter: --
+- Response-MIME-Type: *text/plain*
+- Response-Code: *200*
+- Bemerkung: Kein tieferer Sinn.... :wink:
+- Beispiel-Ausgabe: `Hello World`
 
