@@ -134,6 +134,18 @@ const int            cfg_signal_active = HIGH;           //  Leuchtet die LED be
 
 const adc1_channel_t cfg_adc_input     = ADC1_CHANNEL_4; //  ADC-Kanal hier: ADC1 channel 4 an GPIO32   
 ```
+# Signal-LED
+Da der mein ESP32U keine programmierbare on-board LED hat, ist eine zusätzliche LED auf der Platine verbaut. Diese dient zur Visualisierung verschiedener Events. Dies geschieht durch kurzes und langes aufblinken der LED. In der folgenden Tabelle symbolisiert...<br>
+*&ndash;* = langes Aufblitzen<br>
+*.*       = kurzes Aufblitzen
+
+|Event                                | Signal                                  |
+| ---                                 | ---                                     |
+| "/doorlevel" Abfrage                | .&nbsp;.&nbsp;.                         |
+| "/push_the_button" Anforderung      | &ndash;&nbsp;&ndash;&nbsp;&ndash;       |
+
+
+
 # Integration in Home-Automation-Systeme
 Im Folgenden ein paar nutzliche URL-Aufrufe, die zur Integration in Systeme wie [Node-RED](https://nodered.org/) benutzt werden.
 Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
