@@ -54,8 +54,8 @@ Die Werte des Analaog-Digital-Converters dienen zur grafischen Darstellung der T
 <table>
   <tr>
     <td><img src="Pictures/garage1_small.gif" Alt="ConfigDoor_Up"></td>
-    <td> ADC-Wert <br>
-                       Door_Up<br>
+    <td> <p align="left">ADC-Wert </p>
+                       <p alighn="right">Door_Up</p>
                        &nbsp;<br>
                        Door_Middle<br>
                        &nbsp;<br>
