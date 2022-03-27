@@ -10,6 +10,9 @@ Wie man 2,4Ghz-WLAN-Antenne selber machen kann, zeigt folgendes [YouTube-Video](
 
 ![Box](02_box.jpg)
 
+## Detailansicht Platine
+![Platine_in_Box](07_Platine_in_Box.jpg)
+
 ##Winkelgebergehäuse
 3D-Gedrucktes Gehäuse; CAD und STL-Daten im Verzeichnis [Winkelgeber-Gehaeuse](../Winkelgeber-Gehaeuse).
 Der quadratische Mitnehmer-Block auf der Poti-Welle läuft locker im U-Profil der Tor-Aufhängung.
