@@ -4,7 +4,7 @@
     "pw": "garage_pass"
   },
   "ServerConfig": {
-    "hostname": "garage"
+    "hostname": "garage-test"
   },
   "ApplConfig": {
     "door_up": 2650,

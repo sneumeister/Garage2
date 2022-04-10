@@ -5,6 +5,40 @@
 #include "hardwareRelated.h"
 
 
+
+
+//***************************************************************
+//**** Initialisiere Hardwae Pins und ADC...
+bool init_hardware() {
+  bool ret=false;
+  //*** Inititialisiere Relais-Pin...
+  DEBUG_PRINT("Setting Relais-Pin ", cfg_relais_pin);
+  DEBUG_PRINT(" to OUTPUT and ", cfg_relais_active==HIGH?"LOW":"HIGH");
+  DEBUG_PRINTS(": ");
+  pinMode(cfg_relais_pin, OUTPUT);
+  digitalWrite(cfg_relais_pin, !(cfg_relais_active));
+  DEBUG_PRINTS(" OK."); DEBUG_PRINTLN();
+  
+  //*** Inititialisiere LED-Pin...
+  pinMode(cfg_signal_led, OUTPUT);
+  digitalWrite(cfg_signal_led, !(cfg_signal_active));
+  
+  //*** Inititialisiere ADC...
+  DEBUG_PRINT("Initialize ADC (", cfg_adc_input); DEBUG_PRINTS("): ");
+  if (ESP_OK != adc1_config_width(cfg_adc_width)) {
+    DEBUG_PRINTS("Error setting bit width.\n");
+    ret=false;
+  } else {
+    if (ESP_OK != adc1_config_channel_atten( cfg_adc_input , cfg_adc_attn )) {
+      DEBUG_PRINTS("Error setting capture attenuation.\n");
+      ret=false;
+    } else {
+      ret=true;
+      DEBUG_PRINTS("OK.\n");
+    }
+  }
+  return(ret);
+ }
 //***************************************************************
 //**** Read ADC for door and MASK it
 int read_door_adc() {
@@ -48,6 +82,7 @@ int door_level(int adc_val, const ApplConfig &ApCfg) {
 //**** Switch Door open/close button
 void push_the_button() {
   digitalWrite(cfg_relais_pin, cfg_relais_active);
+  DEBUG_PRINTS("Switch relais!"); DEBUG_PRINTLN();
   waitMs(500);
   digitalWrite(cfg_relais_pin, !(cfg_relais_active));
 }

@@ -48,7 +48,7 @@ bool  WifiStartAP(const SoftApConfig *SoftApCfg, const bool SwitchApUp ){
     ret=false;
   }
   if (ApUp) {
-    DEBUG_PRINT("mywifi: Connected clients: ", WiFi.softAPgetStationNum()  );DEBUG_PRINTLN();
+//    DEBUG_PRINT("mywifi: Connected clients: ", WiFi.softAPgetStationNum()  );DEBUG_PRINTLN();
   }
   
   return(ret);
@@ -104,14 +104,15 @@ wl_status_t WifiReConnect(const StaConfig StaCfg[], const int maxStaCfgs, const 
     }
   }
   if ( ret!= WL_CONNECTED ) {
-    if ( failedCycles>0 ) { failedCycles--; }
+    if ( failedCycles>0 ) { 
+      failedCycles--;
+      DEBUG_PRINT("mywifi: failedCycles=", failedCycles); DEBUG_PRINTLN();  }
   } else {
     failedCycles=MAX_FAILS_FOR_AP_START;
     WifiStartAP(SoftAPCfg, false);    // false == Stopp AP
   }
-  DEBUG_PRINT("mywifi: failedCycles=", failedCycles); DEBUG_PRINTLN();
+//  DEBUG_PRINT("mywifi: failedCycles=", failedCycles); DEBUG_PRINTLN();
   if (!failedCycles) {
-    DEBUG_PRINTS("mywifi: Starting local AP..."); DEBUG_PRINTLN();
  //*---------------------------- AP function ------------------
     WifiStartAP(SoftAPCfg, true);    // true == Start AP
   }

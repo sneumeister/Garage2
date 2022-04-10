@@ -21,6 +21,7 @@ const int cfg_relais_pin      = 25;      // An diesem Pin hängt das Relais...
 const int cfg_relais_active   = LOW;     // Wann schaltet Relais bei LOW oder HIGH am Pin?
 //*** Signal LED  ******************************************
 const int cfg_signal_led      = 13;      // No BuiltIn LED on ESP32U-Board.. hier Signal-LED...
+//const int cfg_signal_led      = 2;         // Onboard LED bei diversen Borads...
 const int cfg_signal_active   = HIGH;    // HIGH == ON
 //********************* Globalvars **********
 //int door_direct;                         // Opening the door will increase or decrese ADC ?
@@ -29,6 +30,7 @@ const int cfg_signal_active   = HIGH;    // HIGH == ON
 //int   door_status = 0;
 
 //******************* Function prototypes *************************************
+bool init_hardware();                                 //**** Initialisiere Herawre Pins und ADC...
 int read_door_adc();                                  //**** Read ADC for door and MASK it
 int door_level(int adc_val, const ApplConfig &ApCfg); //**** Convert read ADC into Level 0-3: 0==geschlossen... 3==offen
 void push_the_button();                               //**** Switch Door relais => open/close

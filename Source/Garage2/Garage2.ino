@@ -18,7 +18,6 @@
 //#include "ESPAsyncDNSServer.h";
 
 //*** Meine Includes **********
-#define DEBUGINFO 1           // Compile DEBUG clauses....
 
 #include "debug.h"            // Switch on/of Debug Info via 'Serial'
 #include "littleHelpers.h"    // Little Helper functions
@@ -60,8 +59,9 @@ void handlerSettingsPOST(AsyncWebServerRequest *request){
   const char*  ACTION_ADC_DWN  ="door_down";
   const char*  ACTION_ADC_MID  ="door_mid";
   const char*  ACTION_ADC_UP   ="door_up";
-  const char*  ACTION_HOST       ="sethostname";
-  const char*  ACTION_HOST_HST   ="hostname";
+  const char*  ACTION_HOST     ="sethostname";
+  const char*  ACTION_HOST_HST ="hostname";
+  const char*  ACTION_REBOOT   ="ESPreboot";
  
   DEBUG_PRINTS("Handler POST handling: ");
 //*** Wenn's einen "action=" parameter gibt ************************************************************
@@ -126,6 +126,16 @@ void handlerSettingsPOST(AsyncWebServerRequest *request){
         strlcpy(config.ServerCfg.hostname, request->getParam(ACTION_HOST_HST, true)->value().c_str(), sizeof(config.ServerCfg.hostname));
       }
     }
+//***** Reboot ESP ***************************
+//***** Wenn ACTION_REBOOT="ESPreboot" ==> Restart ESP
+    else if ( strcmp( request->getParam(PARAM_ACTION_ID, true)->value().c_str() , ACTION_REBOOT )==0){
+      DEBUG_PRINT("==> '", ACTION_REBOOT ); DEBUG_PRINTS("'"); DEBUG_PRINTLN();
+//***** Wenn ACTION_HOST_HST="hostname" ==> Setze hostname *********************************************
+      DEBUG_PRINTS("Restarting ESP...." ); DEBUG_PRINTLN();
+      request->redirect("/");
+      delay(500);
+      ESP.restart();
+    }
 //***** Irgend ein "action=" wurde gefunden ==> Speichere config im File ***************************
   saveConfigFile(filename, config); 
   #ifdef DEBUGINFO
@@ -144,13 +154,21 @@ void setup() {
   // Initialize serial port
   Serial.begin(115200);
   
-  #ifdef DEBUGINFO
+  #ifdef DEBUGWIFI
     Serial.setDebugOutput(true); // Debug Output for WLAN on Serial Interface.
   #endif
   
   if(!SPIFFS.begin(true)){ DEBUG_PRINTS("Error while mounting SPIFFS!\n"); }
   else { DEBUG_PRINTS("OK.\n"); }
 
+  // Initialisiere Hardwrae PINs, ADC,...
+  DEBUG_PRINTS("Initialize Hardware..."); DEBUG_PRINTLN();
+  if(!init_hardware() ) {
+    DEBUG_PRINTS("...failed => Reboot!!"); DEBUG_PRINTLN();
+    ESP.restart();
+  }
+
+  
   // Load configuration
   DEBUG_PRINTS("Load config..."); DEBUG_PRINTLN();
   bool loaded = loadConfigFile(filename, config);
@@ -170,10 +188,13 @@ void setup() {
   WifiInit(config.ServerCfg.hostname, config.SoftApCfg.SoftApSsid);   // Set Wifi-Mode
   //*** Handler definitions ***************************************
   //**** Load HTML-Code handlers ***********************************
-  server.rewrite("/", "/index.html");
+  server.rewrite("/", "/index.html").setFilter(ON_STA_FILTER);
+  server.rewrite("/", "/config.html").setFilter(ON_AP_FILTER);
   server.rewrite("/config", "/config.html");
-  server.rewrite("/generate_204", "/config.html").setFilter(ON_AP_FILTER);
-  server.rewrite("/fwlink", "/config.html").setFilter(ON_AP_FILTER);
+//  server.rewrite("generate_204", "/config.html").setFilter(ON_AP_FILTER);
+//  server.rewrite("fwlink", "/config.html").setFilter(ON_AP_FILTER);
+//  server.rewrite("connectivitycheck.gstatic.com", "/config.html").setFilter(ON_AP_FILTER);
+  
   
 //**********************************************************************************
 //**** Hello world!
@@ -287,7 +308,7 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //**** Setup the DNS server redirecting all the domains to the apIP
   dnsServer.setErrorReplyCode(DNSReplyCode::NoError);
-  dnsServer.setTTL(300);
+  dnsServer.setTTL(500);
   dnsServer.start(DNS_PORT, "*",  WiFi.softAPIP() );
 /***
     dnsServer.setTTL(300); // modify TTL associated  with the domain name (in seconds); default is 60 seconds
@@ -312,6 +333,6 @@ void loop() {
 //    DEBUG_PRINTS("Loop...\n");
   }
   loopArduinoOTA();               //**** Call ArduinoOTA-Handler...
-  //dnsServer.processNextRequest(); //**** DNS
+  dnsServer.processNextRequest(); //**** DNS
 
 }
