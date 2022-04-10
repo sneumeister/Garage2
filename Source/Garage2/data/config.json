@@ -13,12 +13,12 @@
   },
   "StaConfig": [
     {
-      "ssid": "MNAccessPoint-2",
-      "pw": "TheQuickBrownFoxJumpsOverTheLazyDog!"
+      "ssid": "MNAccessPoint-1",
+      "pw": "pass-1"
     },
     {
-      "ssid": "FritzensBox24",
-      "pw": "TheQuickBrownFoxJumpsOverTheLazyDog"
+      "ssid": "MNAccessPoint-2",
+      "pw": "pass-2"
     }
   ]
 }
