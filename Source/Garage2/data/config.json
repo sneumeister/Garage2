@@ -4,7 +4,7 @@
     "pw": "garage_pass"
   },
   "ServerConfig": {
-    "hostname": "garage-test"
+    "hostname": "garage"
   },
   "ApplConfig": {
     "door_up": 2650,
@@ -13,12 +13,12 @@
   },
   "StaConfig": [
     {
-      "ssid": "MNAccessPoint-1",
-      "pw": "pass-1"
-    },
-    {
       "ssid": "MNAccessPoint-2",
       "pw": "pass-2"
+    },
+    {
+      "ssid": "MNAccessPoint-1",
+      "pw": "pass-1"
     }
   ]
 }
