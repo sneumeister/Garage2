@@ -1,12 +1,11 @@
 //****************************************************************
 //**** Version Infos...........
-//*** V2.0
-//          Version with Captive Portal
+//*** V2.0.x     Version with Config-File and Captive Portal
 //****************************************************************
 
 #define SKETCHNAME  "Garagensteuerung"
 #define SKETCHVERSION "$Ver 2.0.2"
-#define SKETCHDATE  "2022-04-12"
+#define SKETCHDATE  "2022-04-13"
 const char SKETCHCOMPILE[] =
 {
    // YYYY- year

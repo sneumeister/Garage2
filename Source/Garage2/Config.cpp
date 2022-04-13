@@ -1,4 +1,5 @@
-// This is a sample file from the book "Mastering ArduinoJson"
+// Handle Config-File
+// Based on a sample file from the book "Mastering ArduinoJson"
 // https://arduinojson.org/book/
 // Copyright 2017-2021 Benoit Blanchon
 

@@ -1,10 +1,7 @@
-// This is a sample file from the book "Mastering ArduinoJson"
-// https://arduinojson.org/book/
-// Copyright 2017-2021 Benoit Blanchon
-//
-// This example shows how to store your project configuration in a JSON file.
-// The file is stored in SPIFFS, so you need something compatible (like an
-// ESP8266) to run this code.
+//*********************************************************
+//* Garagentorsteuerung mit ESP32 und Web-Frontend
+//* Github:  https://github.com/sneumeister/Garage2
+//*********************************************************
 
 //*** Version Informationen ********
 #include "_sketchversion.h";
