@@ -3,7 +3,7 @@
 
 #pragma once
 
-#define DEBUGINFO 1
+#define DEBUGINFO 0
 
 #include <WiFi.h>
 #include "debug.h"

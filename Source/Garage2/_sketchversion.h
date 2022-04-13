@@ -5,8 +5,8 @@
 //****************************************************************
 
 #define SKETCHNAME  "Garagensteuerung"
-#define SKETCHVERSION "$Ver 2.0.1"
-#define SKETCHDATE  "2022-03-26"
+#define SKETCHVERSION "$Ver 2.0.2"
+#define SKETCHDATE  "2022-04-12"
 const char SKETCHCOMPILE[] =
 {
    // YYYY- year
