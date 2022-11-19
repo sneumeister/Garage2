@@ -7,7 +7,7 @@
 #include "config.h"
 #include <SPIFFS.h>
 
-#define DEBUGINFO 1           // Compile DEBUG clauses....
+#define DEBUGINFO 0           // Compile DEBUG clauses....
 #include "debug.h"            // Switch on/of Debug Info via 'Serial'
 
 //#define AOTA_PORT 3232   // Default-Port: 3232

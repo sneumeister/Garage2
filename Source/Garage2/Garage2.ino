@@ -15,15 +15,30 @@
 //#include "ESPAsyncDNSServer.h";
 
 //*** Meine Includes **********
+#define DEBUGINFO 0
+#define DEBUGWIFI 0
 
 #include "debug.h"            // Switch on/of Debug Info via 'Serial'
-#include "littleHelpers.h"    // Little Helper functions
 #include "Config.h"           // Configuration Struct and JSON De-/Serialize functions...
 #include "mywifi.h"           // Everything with Wifi connections: STA + AP
 #include "hardwareRelated.h"  // Everything related to hardware GPIO , Pins..
 #include "myArduinoOTA.h"     // ARduinoOTA for Over-The-Air upadtes from ArduinoIDE...
 
 //*** Globale Variablen und Const-anten
+TaskHandle_t  signalLedTaskHandle=NULL;                //*** define Task structure for "signalLED"
+QueueHandle_t   signalLedQueue=NULL;                   //*** the Queue for the singalLed
+
+int signalMsgIdx[MSG_COUNT] = {
+  MSG_SETUP_FINISH,
+  MSG_DOORLEVEL,
+  MSG_PUSH_THE_BUTTON };
+
+const char *signalMsgStrs[][MAX_SIGNAL_MSG_LEN] = {
+    " * ",  //** MSG_SETUP_FINISH=0;
+    "...",  //** MSG_DOORLEVEL,
+    "- - -" //** MSG_PUSH_THE_BUTTON,
+    };
+
 //**** Pfad zur Config-Datei
 const char* filename = "/config.json"; 
 const char* web_path = "/";
@@ -37,7 +52,6 @@ AsyncWebServer server(80);
 const byte DNS_PORT = 53;
 DNSServer dnsServer;
 //AsyncDNSServer dnsServer;
-
 
 //AsyncWebSocket ws("/ws");             // access at ws://[esp ip]/ws
 //AsyncEventSource events("/events");   // event source (Server-Sent events)
@@ -158,13 +172,24 @@ void setup() {
   if(!SPIFFS.begin(true)){ DEBUG_PRINTS("Error while mounting SPIFFS!\n"); }
   else { DEBUG_PRINTS("OK.\n"); }
 
+  // Initialize signalLedTas() and Queue ...
+  DEBUG_PRINTS("Setting up signalLedTask...");
+  xTaskCreatePinnedToCore(  signalLedTask,        /* Function to implement the task */
+                            "SignalLed",          /* Name of the task */
+                            1000,                 /* Stack size words or bytes ? */
+                            NULL,                 /* task input parameter */
+                            0,                    /* priority of the task */
+                            &signalLedTaskHandle, /* task handle */
+                            1);                   /* core where task should run on */
+  DEBUG_PRINTS(" and signalLedQueue...");
+  signalLedQueue = xQueueCreate(3, sizeof( "------" ) );
+  DEBUG_PRINTS("OK.\n");
   // Initialisiere Hardwrae PINs, ADC,...
   DEBUG_PRINTS("Initialize Hardware..."); DEBUG_PRINTLN();
   if(!init_hardware() ) {
     DEBUG_PRINTS("...failed => Reboot!!"); DEBUG_PRINTLN();
     ESP.restart();
   }
-
   
   // Load configuration
   DEBUG_PRINTS("Load config..."); DEBUG_PRINTLN();
@@ -229,14 +254,16 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //**** Send door position
   server.on("/doorlevel", HTTP_GET, [](AsyncWebServerRequest *request){
-    signalLed("...");  //*** 3x short...
+    // signalLed("...");  //*** 3x short...
+    xQueueSend(signalLedQueue, "..." ,  portMAX_DELAY  ); //***  3x shorts...
     DEBUG_PRINT("Web: Door level requested: ", door_level( read_door_adc() , config.ApplCfg   ) )  ; DEBUG_PRINTLN();
     request->send(200, "text/plain", String((door_level( read_door_adc() , config.ApplCfg   ) ) ) ); });
 
 //**********************************************************************************
 //**** Push button to open door.....
   server.on("/push_the_button", HTTP_POST, [](AsyncWebServerRequest *request){
-    signalLed("- - -");  // Signal: 3x lang...
+    //signalLed("- - -");  // Signal: 3x lang...
+    xQueueSend(signalLedQueue, "  *  " ,  portMAX_DELAY  ); //***  3x lang... + extra Pause...
     if (request->hasParam("action", true)) {
       if ( strcmp( request->getParam("action", true)->value().c_str() , "push" )==0){
         push_the_button();
@@ -320,16 +347,15 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //*** Start srver ***************
   setupArduinoOTA(config.ServerCfg.hostname);
+  xQueueSend(signalLedQueue, "* * *" ,  portMAX_DELAY  ); //***  3x lang... + extra Pause...
 }
 
 //***************** Loop *************************
 void loop() {
   if ( WiFi.status() !=  WL_CONNECTED ) {
     WifiReConnect(config.StaCfg, config.curStaConfigs, config.ServerCfg.hostname, &config.SoftApCfg );
-//    waitMs(10);
-//    DEBUG_PRINTS("Loop...\n");
   }
   loopArduinoOTA();               //**** Call ArduinoOTA-Handler...
   dnsServer.processNextRequest(); //**** DNS
-
+  vTaskDelay(500 / portTICK_PERIOD_MS);
 }

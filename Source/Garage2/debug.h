@@ -1,7 +1,13 @@
 //*********** DEBUG Macros *****************
 
-#define DEBUGINFO 0             // Switch debug output on and off by 1 or 0
-#define DEBUGWIFI 0             // WiFi Dug-Info on Serial...
+
+#ifndef DEBUGINFO
+  #define DEBUGINFO 1             // Switch debug output on and off by 1 or 0
+#endif
+
+#ifndef DEBUGWIFI
+  #define DEBUGWIFI 0             // Switch debug output on and off by 1 or 0
+#endif
 
 #if DEBUGINFO
 #define DEBUG_PRINTS(s)   { Serial.print(F(s)); }

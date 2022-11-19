@@ -15,7 +15,7 @@ void WifiInit(const char* hostname, const char* ap_SSID){
     WiFi.softAPsetHostname(hostname);
     WiFi.setHostname(hostname);
     WiFi.softAPdisconnect(true);
-    waitMs(1000);
+    vTaskDelay( 1000 / portTICK_PERIOD_MS);
     DEBUG_PRINTS("mywifi: setting WiFi.mode(WIFI_MODE_APSTA)."); DEBUG_PRINTLN();
 }
 
@@ -89,7 +89,7 @@ wl_status_t WifiReConnect(const StaConfig StaCfg[], const int maxStaCfgs, const 
       if ( WiFi.status() !=  WL_CONNECTED ) {
         int WLcount = 0;
         while (WiFi.status() != WL_CONNECTED && WLcount < WLmaxCount ) {
-          waitMs( CheckInterval );
+          vTaskDelay( CheckInterval / portTICK_PERIOD_MS);
           DEBUG_PRINTS(".");
           ++WLcount;
         }

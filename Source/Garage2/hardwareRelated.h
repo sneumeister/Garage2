@@ -8,7 +8,6 @@
 #include <Arduino.h>
 #include <driver/adc.h>
 #include "debug.h"            // Switch on/of Debug Info via 'Serial'
-#include "littleHelpers.h"    // Hilfs-Funktion.. z.B. waitMs()
 #include "config.h"           // Globale Config-Datei
 
 //*** AD Converter settings ********************************
@@ -35,3 +34,14 @@ int read_door_adc();                                  //**** Read ADC for door a
 int door_level(int adc_val, const ApplConfig &ApCfg); //**** Convert read ADC into Level 0-3: 0==geschlossen... 3==offen
 void push_the_button();                               //**** Switch Door relais => open/close
 void signalLed(const char *signal);                   //*** string für Signal LED "." =>short blink , "-" =>long blink
+
+//******************* SignalLED related things ********************************
+#define MAX_SIGNAL_MSG_LEN  6
+#define MSG_SETUP_FINISH    0
+#define MSG_DOORLEVEL       1
+#define MSG_PUSH_THE_BUTTON 2
+#define MSG_COUNT           3
+
+extern  QueueHandle_t   signalLedQueue;                        //*** the Queue for the singalLed
+extern const int  signalLedStrLen;                             //*** max. length of signalLedString
+void            signalLedTask(void * parameter);                //*** prototype

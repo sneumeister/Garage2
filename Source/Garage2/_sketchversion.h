@@ -1,11 +1,14 @@
 //****************************************************************
 //**** Version Infos...........
 //*** V2.0.x     Version with Config-File and Captive Portal
+//*** V2.0.3     waitms() replaced by vTaskDelay(),
+//***            littleHelpers.cpp/h deleted, clean-up debug #define's,
+//***            signal-LED operated by independet task
 //****************************************************************
 
 #define SKETCHNAME  "Garagensteuerung"
-#define SKETCHVERSION "$Ver 2.0.2"
-#define SKETCHDATE  "2022-04-13"
+#define SKETCHVERSION "$Ver 2.0.3"
+#define SKETCHDATE  "2022-11-19"
 const char SKETCHCOMPILE[] =
 {
    // YYYY- year

@@ -3,12 +3,11 @@
 
 #pragma once
 
-#define DEBUGINFO 0
-
 #include <WiFi.h>
 #include "debug.h"
+
+#define DEBUGINFO 0
 #include "config.h"
-#include "littleHelpers.h"
 
 #define MYWIFI_MAX_TRIALS 25      //25    // Max number of checks...
 #define MYWIFI_TRIAL_INTERVAL 500     // Milisecs. between Status checks...

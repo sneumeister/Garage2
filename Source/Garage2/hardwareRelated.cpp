@@ -4,10 +4,8 @@
 #pragma once
 #include "hardwareRelated.h"
 
-
-
-
 //***************************************************************
+
 //**** Initialisiere Hardwae Pins und ADC...
 bool init_hardware() {
   bool ret=false;
@@ -83,31 +81,66 @@ int door_level(int adc_val, const ApplConfig &ApCfg) {
 void push_the_button() {
   digitalWrite(cfg_relais_pin, cfg_relais_active);
   DEBUG_PRINTS("Switch relais!"); DEBUG_PRINTLN();
-  waitMs(500);
+  vTaskDelay( 500 / portTICK_PERIOD_MS);
   digitalWrite(cfg_relais_pin, !(cfg_relais_active));
 }
 //***************************************************************
 //*** Signal LED **** string "...---..." == "SOS"
 void signalLed(const char *signal) {
-  const int Pshort=20;     // (time in ms)
-  const int Plong=50;      // (time in ms)
-  const int Ppause=30;     // (time in ms)
+  const int Pshort= 20 / portTICK_PERIOD_MS;     // (time in ms)
+  const int Plong=  70 / portTICK_PERIOD_MS;     // (time in ms)
+  const int Ppause= 50 / portTICK_PERIOD_MS;     // (time in ms)
 
   for(int i=0; i<strlen(signal); i++) {
     switch(signal[i]) {
       case '.':
         digitalWrite(cfg_signal_led, cfg_signal_active);
-        waitMs(Pshort);
+        vTaskDelay( Pshort );
         break;
       case '-':
         digitalWrite(cfg_signal_led, cfg_signal_active);
-        waitMs(Plong);
+        vTaskDelay( Plong );
         break;
       default:  //** additional Pause if unknown symbol....
-        waitMs(Ppause);
+        vTaskDelay( Ppause );
         break;
     }
     digitalWrite(cfg_signal_led, !(cfg_signal_active));
-    waitMs(Ppause);
+    vTaskDelay( Ppause );
   }
 }
+
+void signalLedTask(void * parameter){
+  const int Pshort= 30   / portTICK_PERIOD_MS;     // (time in ms) Short-On
+  const int Plong=  70   / portTICK_PERIOD_MS;     // (time in ms) Long-On
+  const int Ppause= 30   / portTICK_PERIOD_MS;     // (time in ms) Pause
+  const int Pxpause= 130 / portTICK_PERIOD_MS;     // (time in ms) Xtra-Long
+
+  char  msg[MAX_SIGNAL_MSG_LEN];
+  for(;;) {
+    xQueueReceive(signalLedQueue, msg, portMAX_DELAY);
+
+      for(int i=0; i<strlen(msg ); i++) {
+        switch(msg[i]) {
+        case '.':
+          digitalWrite(cfg_signal_led, cfg_signal_active);
+          vTaskDelay( Pshort);
+          break;
+        case '*':
+          digitalWrite(cfg_signal_led, cfg_signal_active);
+          vTaskDelay( Pshort);
+          break;
+        case '-':
+          digitalWrite(cfg_signal_led, cfg_signal_active);
+          vTaskDelay( Plong);
+          break;
+        default:  //** additional Pause if unknown symbol....
+          vTaskDelay( Ppause);
+          break;
+        }
+      digitalWrite(cfg_signal_led, !(cfg_signal_active));
+      vTaskDelay( Ppause);
+      }
+    
+  }
+};
