@@ -36,11 +36,7 @@ void push_the_button();                               //**** Switch Door relais 
 void signalLed(const char *signal);                   //*** string für Signal LED "." =>short blink , "-" =>long blink
 
 //******************* SignalLED related things ********************************
-#define MAX_SIGNAL_MSG_LEN  6
-#define MSG_SETUP_FINISH    0
-#define MSG_DOORLEVEL       1
-#define MSG_PUSH_THE_BUTTON 2
-#define MSG_COUNT           3
+#define MAX_SIGNAL_MSG_LEN  6 //** including '/0' at end
 
 extern  QueueHandle_t   signalLedQueue;                        //*** the Queue for the singalLed
 extern const int  signalLedStrLen;                             //*** max. length of signalLedString

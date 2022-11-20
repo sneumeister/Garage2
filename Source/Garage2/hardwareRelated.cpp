@@ -111,36 +111,37 @@ void signalLed(const char *signal) {
 }
 
 void signalLedTask(void * parameter){
-  const int Pshort= 30   / portTICK_PERIOD_MS;     // (time in ms) Short-On
-  const int Plong=  70   / portTICK_PERIOD_MS;     // (time in ms) Long-On
-  const int Ppause= 30   / portTICK_PERIOD_MS;     // (time in ms) Pause
-  const int Pxpause= 130 / portTICK_PERIOD_MS;     // (time in ms) Xtra-Long
+  const int OnShort   = 30  / portTICK_PERIOD_MS;     // (time in ms) Short-On =  .
+  const int OnLong    = 70  / portTICK_PERIOD_MS;     // (time in ms) Long-On  =  *
+  const int OffShort  = 30  / portTICK_PERIOD_MS;     // (time in ms) Short-Off=  -
+  const int OffLong   = 70  / portTICK_PERIOD_MS;     // (time in ms) Long-Off =  =
 
   char  msg[MAX_SIGNAL_MSG_LEN];
   for(;;) {
     xQueueReceive(signalLedQueue, msg, portMAX_DELAY);
-
-      for(int i=0; i<strlen(msg ); i++) {
-        switch(msg[i]) {
-        case '.':
-          digitalWrite(cfg_signal_led, cfg_signal_active);
-          vTaskDelay( Pshort);
-          break;
-        case '*':
-          digitalWrite(cfg_signal_led, cfg_signal_active);
-          vTaskDelay( Pshort);
-          break;
-        case '-':
-          digitalWrite(cfg_signal_led, cfg_signal_active);
-          vTaskDelay( Plong);
-          break;
-        default:  //** additional Pause if unknown symbol....
-          vTaskDelay( Ppause);
-          break;
-        }
-      digitalWrite(cfg_signal_led, !(cfg_signal_active));
-      vTaskDelay( Ppause);
+    for(int i=0; (i<strlen(msg)) && (i< MAX_SIGNAL_MSG_LEN ); i++) {
+      switch(msg[i]) {
+      case '.':           //** Short-On
+        digitalWrite(cfg_signal_led, cfg_signal_active);
+        vTaskDelay( OnShort );
+        break;
+      case '*':           //** Long-On
+        digitalWrite(cfg_signal_led, cfg_signal_active);
+        vTaskDelay( OnLong );
+        break;
+      case '-':           //** Short-Off
+        digitalWrite(cfg_signal_led, !(cfg_signal_active));
+        vTaskDelay( OffShort );
+        break;
+      case '=':           //** Long-Off
+        digitalWrite(cfg_signal_led, !(cfg_signal_active));
+        vTaskDelay( OffLong );
+        break;       
+      default:  //** Undefined char... do nothing
+        break;
       }
-    
-  }
+    }
+    digitalWrite(cfg_signal_led, !(cfg_signal_active));
+    vTaskDelay( OffLong );
+   }
 };

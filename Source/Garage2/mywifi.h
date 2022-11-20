@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include <WiFi.h>
+#define DEBUGINFO 0
 #include "debug.h"
 
-#define DEBUGINFO 0
+#include <WiFi.h>
 #include "config.h"
 
 #define MYWIFI_MAX_TRIALS 25      //25    // Max number of checks...

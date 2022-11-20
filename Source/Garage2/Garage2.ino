@@ -28,17 +28,6 @@
 TaskHandle_t  signalLedTaskHandle=NULL;                //*** define Task structure for "signalLED"
 QueueHandle_t   signalLedQueue=NULL;                   //*** the Queue for the singalLed
 
-int signalMsgIdx[MSG_COUNT] = {
-  MSG_SETUP_FINISH,
-  MSG_DOORLEVEL,
-  MSG_PUSH_THE_BUTTON };
-
-const char *signalMsgStrs[][MAX_SIGNAL_MSG_LEN] = {
-    " * ",  //** MSG_SETUP_FINISH=0;
-    "...",  //** MSG_DOORLEVEL,
-    "- - -" //** MSG_PUSH_THE_BUTTON,
-    };
-
 //**** Pfad zur Config-Datei
 const char* filename = "/config.json"; 
 const char* web_path = "/";
@@ -182,7 +171,7 @@ void setup() {
                             &signalLedTaskHandle, /* task handle */
                             1);                   /* core where task should run on */
   DEBUG_PRINTS(" and signalLedQueue...");
-  signalLedQueue = xQueueCreate(3, sizeof( "------" ) );
+  signalLedQueue = xQueueCreate(3, sizeof( char[MAX_SIGNAL_MSG_LEN] ) );
   DEBUG_PRINTS("OK.\n");
   // Initialisiere Hardwrae PINs, ADC,...
   DEBUG_PRINTS("Initialize Hardware..."); DEBUG_PRINTLN();
@@ -254,16 +243,14 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //**** Send door position
   server.on("/doorlevel", HTTP_GET, [](AsyncWebServerRequest *request){
-    // signalLed("...");  //*** 3x short...
-    xQueueSend(signalLedQueue, "..." ,  portMAX_DELAY  ); //***  3x shorts...
+    xQueueSend(signalLedQueue, ".-.-." ,  150  / portTICK_PERIOD_MS  ); //***  3x shorts...
     DEBUG_PRINT("Web: Door level requested: ", door_level( read_door_adc() , config.ApplCfg   ) )  ; DEBUG_PRINTLN();
     request->send(200, "text/plain", String((door_level( read_door_adc() , config.ApplCfg   ) ) ) ); });
 
 //**********************************************************************************
 //**** Push button to open door.....
   server.on("/push_the_button", HTTP_POST, [](AsyncWebServerRequest *request){
-    //signalLed("- - -");  // Signal: 3x lang...
-    xQueueSend(signalLedQueue, "  *  " ,  portMAX_DELAY  ); //***  3x lang... + extra Pause...
+    xQueueSend(signalLedQueue, "**=**" ,  150  / portTICK_PERIOD_MS ); //*** Extra-Lang
     if (request->hasParam("action", true)) {
       if ( strcmp( request->getParam("action", true)->value().c_str() , "push" )==0){
         push_the_button();
@@ -347,7 +334,7 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //*** Start srver ***************
   setupArduinoOTA(config.ServerCfg.hostname);
-  xQueueSend(signalLedQueue, "* * *" ,  portMAX_DELAY  ); //***  3x lang... + extra Pause...
+  xQueueSend(signalLedQueue, "*****" ,  150  / portTICK_PERIOD_MS  ); //***  3x lang... 
 }
 
 //***************** Loop *************************

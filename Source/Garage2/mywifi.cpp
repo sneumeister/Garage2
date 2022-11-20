@@ -95,9 +95,9 @@ wl_status_t WifiReConnect(const StaConfig StaCfg[], const int maxStaCfgs, const 
         }
         if (WiFi.status() == WL_CONNECTED) {
           DEBUG_PRINTLN();
-          Serial.print("Locale IP: "); Serial.print( WiFi.localIP() ); Serial.print("\n");
-          //DEBUG_PRINT("Locale IP: ", WiFi.localIP()); DEBUG_PRINTLN();
-          //DEBUG_PRINT("RSSI: ", WiFi.RSSI()); DEBUG_PRINTLN();
+          //Serial.print("Locale IP: "); Serial.print( WiFi.localIP() ); Serial.print("\n");
+          DEBUG_PRINT("Locale IP: ", WiFi.localIP()); DEBUG_PRINTLN();
+          DEBUG_PRINT("RSSI: ", WiFi.RSSI()); DEBUG_PRINTLN();
         } else  { DEBUG_PRINTS(". FAILED!"); DEBUG_PRINTLN(); }
       }
       ret=WiFi.status(); 
