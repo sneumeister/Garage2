@@ -160,7 +160,7 @@ Für die Beispiele wird von einen Hostnamen "garage" ausgegangen.
 - HTTP-Parameter: ---
 - Response-MIME-Type: *text/plain*
 - Bemerkung: Versions-Informationen aus [_sketchversion.h](Source/_sketchversion.h) und Kompilierungsdatum
-- Beispiel-Ausgabe:<br> `Garagensteuerung $Ver 2.0.1 (2022-03-26)\n Compiled 2022-03-26 - 17:00:19`
+- Beispiel-Ausgabe:<br> `Garagensteuerung $Ver 2.0.1 (2022-03-26)`<br> `Compiled 2022-03-26 - 17:00:19`
 
 ### Data: ***RSSI-Wert***
 - HTTP-URL: http://garage/raw_rssi
