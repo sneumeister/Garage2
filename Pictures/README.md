@@ -6,9 +6,10 @@ Der rechte Kabelkanal führt zum Winkelgeber (Spannungsteiler-Poti).
 
 ## Detailansicht Box
 Rechtes schwarzes Kabel ist führt zur externen WLAN-Antenne vor dem Metall-Tor.
-Wie man 2,4Ghz-WLAN-Antenne selber machen kann, zeigt folgendes [YouTube-Video](https://www.youtube.com/watch?v=bs8hvXGJdhM)
-
 ![Box](02_box.jpg)
+
+Wie man 2,4Ghz-WLAN-Antenne selber machen kann, zeigt folgendes [YouTube-Video](https://www.youtube.com/watch?v=bs8hvXGJdhM)
+<img src="./self-made-antenna.png" width="640px">
 
 ## Detailansicht Platine
 ![Platine_in_Box](07_Platine_in_Box.jpg)
