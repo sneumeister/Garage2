@@ -14,6 +14,22 @@ Bilder meine Installation im [Pictures](/Pictures) Verzeichnis.
 
 Schematische Darstellung der Schaltung und Stückliste (BOM) im [Schematics](/Schematics) Verzeichnis.
 
+# Build mit pioarduino
+
+Voraussetzung: [pioarduino IDE](https://marketplace.visualstudio.com/items?itemName=pioarduino.pioarduino-ide) (VS Code/Cursor) oder PlatformIO-CLI.
+
+Im Repo-Root:
+
+```bash
+pio run
+pio run -t upload
+pio run -t uploadfs
+pio device monitor
+```
+
+- `upload` flasht die Firmware
+- `uploadfs` flasht das SPIFFS-Image aus [`Source/Garage2/data/`](Source/Garage2/data/)
+- Konfiguration: [`platformio.ini`](platformio.ini) (`framework = arduino`, Board `esp32dev`, 4 MB Flash, SPIFFS)
 
 # Ansicht im Web-Browser
 ## Animation mit simuliertem Push-Button
