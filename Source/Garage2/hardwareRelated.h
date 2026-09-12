@@ -6,15 +6,16 @@
 #define DEBUGINFO 0           // Compile DEBUG clauses....
 
 #include <Arduino.h>
-#include <driver/adc.h>
+#include <esp_adc/adc_oneshot.h>
 #include "debug.h"            // Switch on/of Debug Info via 'Serial'
 #include "config.h"           // Globale Config-Datei
 
 //*** AD Converter settings ********************************
-const adc1_channel_t    cfg_adc_input = ADC1_CHANNEL_4;     /*!< ADC1 channel 4 is GPIO32 */
-const adc_atten_t       cfg_adc_attn  = ADC_ATTEN_DB_11;    /*!<The input voltage of ADC will be reduced to about 1/3.6*/
-const adc_bits_width_t  cfg_adc_width = ADC_WIDTH_12Bit;    /*!< ADC capture width is 12Bit*/
-const unsigned int      cfg_adc_mask = 0b1111111111111111;  /* Mask out some bits.... if necessary...  */
+const adc_unit_t        cfg_adc_unit     = ADC_UNIT_1;       /*!< ADC1 */
+const adc_channel_t     cfg_adc_channel  = ADC_CHANNEL_4;    /*!< ADC1 channel 4 is GPIO32 */
+const adc_atten_t       cfg_adc_atten    = ADC_ATTEN_DB_12;  /*!< Same range as legacy ADC_ATTEN_DB_11 (~1/3.6) */
+const adc_bitwidth_t    cfg_adc_bitwidth = ADC_BITWIDTH_12;  /*!< ADC capture width is 12Bit */
+const unsigned int      cfg_adc_mask     = 0b1111111111111111;  /* Mask out some bits.... if necessary...  */
 //*** Relais settings **************************************
 const int cfg_relais_pin      = 25;      // An diesem Pin hängt das Relais...
 const int cfg_relais_active   = LOW;     // Wann schaltet Relais bei LOW oder HIGH am Pin?

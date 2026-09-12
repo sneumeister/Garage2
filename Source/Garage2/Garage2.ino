@@ -4,7 +4,7 @@
 //*********************************************************
 
 //*** Version Informationen ********
-#include "_sketchversion.h";
+#include "_sketchversion.h"
 //*** Allgemeine Includes **********
 #include <SPIFFS.h>
 //*** Load Wi-Fi library
@@ -276,7 +276,7 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //**** "config.html" handler
     server.serveStatic("/config.html", SPIFFS, "/config.html").setTemplateProcessor(
-          [config](const String &var){
+          [](const String &var){
             String  ret;
             if      (var == "STA0SSID")       { ret=String(config.StaCfg[0].StaSsid); }
             else if (var == "STA0PWD")        { ret=String(config.StaCfg[0].StaPassphrase); }

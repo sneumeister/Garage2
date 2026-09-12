@@ -3,8 +3,6 @@
 // https://arduinojson.org/book/
 // Copyright 2017-2021 Benoit Blanchon
 
-#pragma once
-
 #define DEBUGINFO 0
 
 #include <SPIFFS.h>
@@ -107,8 +105,8 @@ void convertToJson(const ConfigStruct &src, JsonVariant dst) {
   // Add "ApplConfig" object
   dst["ApplConfig"] = src.ApplCfg;
 
-  // Add "StaCfgs"s array
-  JsonArray aps = dst.createNestedArray("StaConfig");
+  // Add "StaConfig" array
+  JsonArray aps = dst["StaConfig"].to<JsonArray>();
 
   // Add each acces point in the array
   for (int i = 0; i < src.curStaConfigs; i++)
@@ -152,7 +150,7 @@ bool loadConfigFile(const char *filename, ConfigStruct &config) {
     ret=false;
   } else {
     // Allocate the JsonDocument
-    StaticJsonDocument<512> doc;
+    JsonDocument doc;
     // Parse the JSON object in the file
     DeserializationError err = deserializeJson(doc, file);
     // This may fail if the JSON is invalid
@@ -180,7 +178,7 @@ bool saveConfigFile(const char *filename, const ConfigStruct &config) {
     ret=false;
   } else {
     // Allocate the JsonDocument
-    StaticJsonDocument<512> doc;
+    JsonDocument doc;
     // Fill JSON document from config
     doc.set(config);
     // Serialize JSON to file

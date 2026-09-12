@@ -3,7 +3,6 @@
 //      https://docs.espressif.com/projects/arduino-esp32/en/latest/api/wifi.html
 //
 
-#pragma once
 #include "mywifi.h"
 
 //******************************************************************************************
