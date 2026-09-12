@@ -7,7 +7,7 @@
 #include "debug.h"
 
 #include <WiFi.h>
-#include "config.h"
+#include "Config.h"
 
 #define MYWIFI_MAX_TRIALS 25      //25    // Max number of checks...
 #define MYWIFI_TRIAL_INTERVAL 500     // Milisecs. between Status checks...

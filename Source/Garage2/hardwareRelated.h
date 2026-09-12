@@ -8,7 +8,7 @@
 #include <Arduino.h>
 #include <esp_adc/adc_oneshot.h>
 #include "debug.h"            // Switch on/of Debug Info via 'Serial'
-#include "config.h"           // Globale Config-Datei
+#include "Config.h"           // Globale Config-Datei
 
 //*** AD Converter settings ********************************
 const adc_unit_t        cfg_adc_unit     = ADC_UNIT_1;       /*!< ADC1 */
@@ -42,3 +42,4 @@ void signalLed(const char *signal);                   //*** string für Signal L
 extern  QueueHandle_t   signalLedQueue;                        //*** the Queue for the singalLed
 extern const int  signalLedStrLen;                             //*** max. length of signalLedString
 void            signalLedTask(void * parameter);                //*** prototype
+void            signalLedEnqueue(const char *msg);              //*** safe enqueue (no-op if queue NULL)

@@ -77,7 +77,7 @@ wl_status_t WifiReConnect(const StaConfig StaCfg[], const int maxStaCfgs, const 
 
     DEBUG_PRINT("Setting STA index: ", curStaCfg); DEBUG_PRINTLN();
 
-    if (StaCfg[curStaCfg].StaSsid[0]==NULL) {
+    if (StaCfg[curStaCfg].StaSsid[0]=='\0') {
       DEBUG_PRINTS("Connecting.... No WiFi Name, abort!" ); DEBUG_PRINTLN();
       ret=WL_NO_SSID_AVAIL; }
     else {

@@ -126,11 +126,23 @@ void signalLed(const char *signal) {
   }
 }
 
+void signalLedEnqueue(const char *msg) {
+  if (signalLedQueue == NULL || msg == NULL) return;
+  char buf[MAX_SIGNAL_MSG_LEN];
+  strlcpy(buf, msg, sizeof(buf));
+  xQueueSend(signalLedQueue, buf, 150 / portTICK_PERIOD_MS);
+}
+
 void signalLedTask(void * parameter){
   const int OnShort   = 30  / portTICK_PERIOD_MS;     // (time in ms) Short-On =  .
   const int OnLong    = 70  / portTICK_PERIOD_MS;     // (time in ms) Long-On  =  *
   const int OffShort  = 30  / portTICK_PERIOD_MS;     // (time in ms) Short-Off=  -
   const int OffLong   = 70  / portTICK_PERIOD_MS;     // (time in ms) Long-Off =  =
+
+  if (signalLedQueue == NULL) {
+    vTaskDelete(NULL);
+    return;
+  }
 
   char  msg[MAX_SIGNAL_MSG_LEN];
   for(;;) {

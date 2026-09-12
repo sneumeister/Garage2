@@ -4,7 +4,7 @@
 #pragma once
 
 #include <ArduinoOTA.h>
-#include "config.h"
+#include "Config.h"
 #include <SPIFFS.h>
 
 #define DEBUGINFO 0           // Compile DEBUG clauses....

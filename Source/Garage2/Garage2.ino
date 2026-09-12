@@ -161,17 +161,26 @@ void setup() {
   if(!SPIFFS.begin(true)){ DEBUG_PRINTS("Error while mounting SPIFFS!\n"); }
   else { DEBUG_PRINTS("OK.\n"); }
 
-  // Initialize signalLedTas() and Queue ...
-  DEBUG_PRINTS("Setting up signalLedTask...");
-  xTaskCreatePinnedToCore(  signalLedTask,        /* Function to implement the task */
+  // Initialize signalLedQueue and signalLedTask ...
+  DEBUG_PRINTS("Setting up signalLedQueue...");
+  signalLedQueue = xQueueCreate(3, sizeof( char[MAX_SIGNAL_MSG_LEN] ) );
+  if (signalLedQueue == NULL) {
+    DEBUG_PRINTS("signalLedQueue create failed => Reboot!!"); DEBUG_PRINTLN();
+    ESP.restart();
+  }
+  DEBUG_PRINTS(" and signalLedTask...");
+  BaseType_t taskOk = xTaskCreatePinnedToCore(
+                            signalLedTask,        /* Function to implement the task */
                             "SignalLed",          /* Name of the task */
-                            1000,                 /* Stack size words or bytes ? */
+                            1000,                 /* Stack size in bytes */
                             NULL,                 /* task input parameter */
                             0,                    /* priority of the task */
                             &signalLedTaskHandle, /* task handle */
                             1);                   /* core where task should run on */
-  DEBUG_PRINTS(" and signalLedQueue...");
-  signalLedQueue = xQueueCreate(3, sizeof( char[MAX_SIGNAL_MSG_LEN] ) );
+  if (taskOk != pdPASS || signalLedTaskHandle == NULL) {
+    DEBUG_PRINTS("signalLedTask create failed => Reboot!!"); DEBUG_PRINTLN();
+    ESP.restart();
+  }
   DEBUG_PRINTS("OK.\n");
   // Initialisiere Hardwrae PINs, ADC,...
   DEBUG_PRINTS("Initialize Hardware..."); DEBUG_PRINTLN();
@@ -243,14 +252,14 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //**** Send door position
   server.on("/doorlevel", HTTP_GET, [](AsyncWebServerRequest *request){
-    xQueueSend(signalLedQueue, ".-.-." ,  150  / portTICK_PERIOD_MS  ); //***  3x shorts...
+    signalLedEnqueue(".-.-."); //***  3x shorts...
     DEBUG_PRINT("Web: Door level requested: ", door_level( read_door_adc() , config.ApplCfg   ) )  ; DEBUG_PRINTLN();
     request->send(200, "text/plain", String((door_level( read_door_adc() , config.ApplCfg   ) ) ) ); });
 
 //**********************************************************************************
 //**** Push button to open door.....
   server.on("/push_the_button", HTTP_POST, [](AsyncWebServerRequest *request){
-    xQueueSend(signalLedQueue, "**=**" ,  150  / portTICK_PERIOD_MS ); //*** Extra-Lang
+    signalLedEnqueue("**=**"); //*** Extra-Lang
     if (request->hasParam("action", true)) {
       if ( strcmp( request->getParam("action", true)->value().c_str() , "push" )==0){
         push_the_button();
@@ -334,7 +343,7 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 //**********************************************************************************
 //*** Start srver ***************
   setupArduinoOTA(config.ServerCfg.hostname);
-  xQueueSend(signalLedQueue, "*****" ,  150  / portTICK_PERIOD_MS  ); //***  3x lang... 
+  signalLedEnqueue("*****"); //***  3x lang... 
 }
 
 //***************** Loop *************************
