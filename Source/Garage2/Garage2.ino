@@ -138,7 +138,7 @@ void handlerSettingsPOST(AsyncWebServerRequest *request){
     }
 //***** Irgend ein "action=" wurde gefunden ==> Speichere config im File ***************************
   saveConfigFile(filename, config); 
-  #ifdef DEBUGINFO
+  #if DEBUGINFO
     printFile(filename);
   #endif
 //***** Kein "action=" gefunden ==> ignorieren ***************************
@@ -350,6 +350,9 @@ server.on("/version", HTTP_GET, [](AsyncWebServerRequest *request){
 void loop() {
   if ( WiFi.status() !=  WL_CONNECTED ) {
     WifiReConnect(config.StaCfg, config.curStaConfigs, config.ServerCfg.hostname, &config.SoftApCfg );
+  } else {
+    // STA up: keep requesting SoftAP stop (immediate if idle, else after grace timeout)
+    WifiStartAP(&config.SoftApCfg, false);
   }
   loopArduinoOTA();               //**** Call ArduinoOTA-Handler...
   dnsServer.processNextRequest(); //**** DNS
