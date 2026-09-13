@@ -1,0 +1,43 @@
+---
+description: Commit messages in English (overrides global German commit rule for this repo)
+alwaysApply: true
+---
+
+# Commit Messages (this repository)
+
+This project overrides the global commit-language rule.
+
+Use **English** for every Git commit in this repo:
+
+```
+<type>(<scope>): <short description in English>
+```
+
+## Types
+
+Same Conventional Commits types as usual: `feat`, `fix`, `refactor`, `docs`, `chore`, `perf`, `test`, `ci`, `build`.
+
+## Rules
+
+- **English**, imperative mood (“add”, “fix”, “update”, “remove”)
+- Lowercase after the colon; no trailing period
+- One-line subject; body only for complex changes
+- Before committing: read `git log -10 --oneline` and match style where sensible
+
+## Examples
+
+```
+chore: ignore Thumbs.db in all directories
+docs: add pioarduino build instructions
+build: add PlatformIO/pioarduino project config
+fix(wifi): reconnect after SoftAP fallback
+```
+
+## Do not use
+
+```
+.gitignore bereinigen
+Thumbs.db in allen Ordnern ignorieren
+Update files
+Fixed bug
+```

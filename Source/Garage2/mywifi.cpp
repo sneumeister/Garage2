@@ -3,7 +3,6 @@
 //      https://docs.espressif.com/projects/arduino-esp32/en/latest/api/wifi.html
 //
 
-#pragma once
 #include "mywifi.h"
 
 //******************************************************************************************
@@ -21,39 +20,51 @@ void WifiInit(const char* hostname, const char* ap_SSID){
 
 //******************************************************************************************
 // Starting SoftAP... enabling connection when Client connect fails.
+// Stopping SoftAP: immediately if no clients; otherwise after SOFTAP_STOP_GRACE_MS (STA reconnect).
 bool  WifiStartAP(const SoftApConfig *SoftApCfg, const bool SwitchApUp ){
   static bool ApUp=false;  // is AP up.. ?
+  static unsigned long softApStopRequestedMs = 0;
   bool  ret=false;
   
   if (SwitchApUp && !ApUp && WiFi.status() !=  WL_CONNECTED ) {
     //  WiFi.softAP(ssid, psk, channel, hidden, max_connection)
+    softApStopRequestedMs = 0;
     WiFi.softAPsetHostname(WiFi.getHostname());
     ApUp=WiFi.softAP(SoftApCfg->SoftApSsid, SoftApCfg->SoftApPasspphrase ,1 , false, 2  );
     ret=ApUp;
     DEBUG_PRINT("mywifi: WiFiStartAP(softAPSSID): AP-SSID='", WiFi.softAPSSID() ); DEBUG_PRINTS("'"); DEBUG_PRINTLN();
     DEBUG_PRINT("mywifi: WiFiStartAP(config): AP-SSID='", SoftApCfg->SoftApSsid ); DEBUG_PRINTS("'"); DEBUG_PRINTLN();
-    DEBUG_PRINT("mywifi: WiFiStartAP(): AP-PW='", (SoftApCfg->SoftApPasspphrase));DEBUG_PRINTS("'"); DEBUG_PRINTLN();
+    DEBUG_PRINT("mywifi: WiFiStartAP(): AP-PW='", (SoftApCfg->SoftApPasspphrase));DEBUG_PRINTS("'");DEBUG_PRINTLN();
     DEBUG_PRINT("mywifi: WiFiStartAP(): AP-IP='", WiFi.softAPIP() );DEBUG_PRINTS("'"); DEBUG_PRINTLN();
   } 
-  else if (!SwitchApUp && ApUp && !WiFi.softAPgetStationNum() ) {
-    ret=WiFi.softAPdisconnect(true);
-    DEBUG_PRINT("mywifi: SoftAP disconnected:", ret);DEBUG_PRINTLN();
-  } 
-  else if (!SwitchApUp && ApUp && WiFi.softAPgetStationNum() ) {
-    // At least one connection to AP..... do not siconnect....
-    ret=false;
-    DEBUG_PRINT("mywifi: SoftAP must not disconnect: Client conneted: ", WiFi.softAPgetStationNum() );DEBUG_PRINTLN();
+  else if (!SwitchApUp && ApUp) {
+    const bool clientsConnected = WiFi.softAPgetStationNum() > 0;
+    if (clientsConnected && softApStopRequestedMs == 0) {
+      softApStopRequestedMs = millis();
+      DEBUG_PRINT("mywifi: SoftAP stop deferred, clients=", WiFi.softAPgetStationNum());
+      DEBUG_PRINTS(" (grace 5min)"); DEBUG_PRINTLN();
+    }
+    const bool graceExpired = softApStopRequestedMs != 0
+        && (millis() - softApStopRequestedMs) >= SOFTAP_STOP_GRACE_MS;
+
+    if (!clientsConnected || graceExpired) {
+      ret=WiFi.softAPdisconnect(true);
+      ApUp=false;
+      softApStopRequestedMs = 0;
+      DEBUG_PRINT("mywifi: SoftAP disconnected:", ret);
+      if (graceExpired && clientsConnected) {
+        DEBUG_PRINTS(" (grace expired, forced)");
+      }
+      DEBUG_PRINTLN();
+    } else {
+      ret=false;
+    }
   } 
   else {
     ret=false;
   }
-  if (ApUp) {
-//    DEBUG_PRINT("mywifi: Connected clients: ", WiFi.softAPgetStationNum()  );DEBUG_PRINTLN();
-  }
   
   return(ret);
-//  DEBUG_PRINT("mywifi: WiFiStartAP(): AP-SSID='",(SoftApCfg->SoftApSsid));DEBUG_PRINTS("'");DEBUG_PRINTLN();
-//  DEBUG_PRINT("mywifi: WiFiStartAP(): AP-PW='", (SoftApCfg->SoftApPasspphrase));DEBUG_PRINTS("'");DEBUG_PRINTLN();
 }
 
 //******************************************************************************************
@@ -78,7 +89,7 @@ wl_status_t WifiReConnect(const StaConfig StaCfg[], const int maxStaCfgs, const 
 
     DEBUG_PRINT("Setting STA index: ", curStaCfg); DEBUG_PRINTLN();
 
-    if (StaCfg[curStaCfg].StaSsid[0]==NULL) {
+    if (StaCfg[curStaCfg].StaSsid[0]=='\0') {
       DEBUG_PRINTS("Connecting.... No WiFi Name, abort!" ); DEBUG_PRINTLN();
       ret=WL_NO_SSID_AVAIL; }
     else {

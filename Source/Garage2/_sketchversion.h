@@ -4,11 +4,13 @@
 //*** V2.0.3     waitms() replaced by vTaskDelay(),
 //***            littleHelpers.cpp/h deleted, clean-up debug #define's,
 //***            signal-LED operated by independet task
+//*** V2.1.0     pioarduino/PlatformIO, ArduinoJson 7, adc_oneshot,
+//***            SoftAP 5min stop grace, signal-led queue harden
 //****************************************************************
 
 #define SKETCHNAME  "Garagensteuerung"
-#define SKETCHVERSION "$Ver 2.0.3"
-#define SKETCHDATE  "2022-11-20"
+#define SKETCHVERSION "$Ver 2.1.0"
+#define SKETCHDATE  "2026-09-13"
 const char SKETCHCOMPILE[] =
 {
    // YYYY- year

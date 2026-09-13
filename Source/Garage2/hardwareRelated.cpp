@@ -1,10 +1,11 @@
 //******** Funktionen zur Hardware: ADC und Pins **********
 //*********************************************************
 
-#pragma once
 #include "hardwareRelated.h"
 
 //***************************************************************
+
+static adc_oneshot_unit_handle_t adc_handle = nullptr;
 
 //**** Initialisiere Hardwae Pins und ADC...
 bool init_hardware() {
@@ -21,14 +22,24 @@ bool init_hardware() {
   pinMode(cfg_signal_led, OUTPUT);
   digitalWrite(cfg_signal_led, !(cfg_signal_active));
   
-  //*** Inititialisiere ADC...
-  DEBUG_PRINT("Initialize ADC (", cfg_adc_input); DEBUG_PRINTS("): ");
-  if (ESP_OK != adc1_config_width(cfg_adc_width)) {
-    DEBUG_PRINTS("Error setting bit width.\n");
+  //*** Inititialisiere ADC (oneshot)...
+  DEBUG_PRINT("Initialize ADC (unit ", cfg_adc_unit);
+  DEBUG_PRINT(", ch ", cfg_adc_channel); DEBUG_PRINTS("): ");
+  adc_oneshot_unit_init_cfg_t init_config = {
+    .unit_id = cfg_adc_unit,
+    .clk_src = ADC_RTC_CLK_SRC_DEFAULT,
+    .ulp_mode = ADC_ULP_MODE_DISABLE,
+  };
+  if (ESP_OK != adc_oneshot_new_unit(&init_config, &adc_handle)) {
+    DEBUG_PRINTS("Error creating oneshot unit.\n");
     ret=false;
   } else {
-    if (ESP_OK != adc1_config_channel_atten( cfg_adc_input , cfg_adc_attn )) {
-      DEBUG_PRINTS("Error setting capture attenuation.\n");
+    adc_oneshot_chan_cfg_t chan_config = {
+      .atten = cfg_adc_atten,
+      .bitwidth = cfg_adc_bitwidth,
+    };
+    if (ESP_OK != adc_oneshot_config_channel(adc_handle, cfg_adc_channel, &chan_config)) {
+      DEBUG_PRINTS("Error configuring channel.\n");
       ret=false;
     } else {
       ret=true;
@@ -40,7 +51,12 @@ bool init_hardware() {
 //***************************************************************
 //**** Read ADC for door and MASK it
 int read_door_adc() {
-  return ( adc1_get_raw( cfg_adc_input ) &  cfg_adc_mask);
+  int raw = 0;
+  if (adc_handle == nullptr || ESP_OK != adc_oneshot_read(adc_handle, cfg_adc_channel, &raw)) {
+    DEBUG_PRINTS("read_door_adc: oneshot read failed.\n");
+    return 0;
+  }
+  return (raw & cfg_adc_mask);
 }
 //***************************************************************
 //**** Convert read ADC into Level 0-3
@@ -110,11 +126,23 @@ void signalLed(const char *signal) {
   }
 }
 
+void signalLedEnqueue(const char *msg) {
+  if (signalLedQueue == NULL || msg == NULL) return;
+  char buf[MAX_SIGNAL_MSG_LEN];
+  strlcpy(buf, msg, sizeof(buf));
+  xQueueSend(signalLedQueue, buf, 150 / portTICK_PERIOD_MS);
+}
+
 void signalLedTask(void * parameter){
   const int OnShort   = 30  / portTICK_PERIOD_MS;     // (time in ms) Short-On =  .
   const int OnLong    = 70  / portTICK_PERIOD_MS;     // (time in ms) Long-On  =  *
   const int OffShort  = 30  / portTICK_PERIOD_MS;     // (time in ms) Short-Off=  -
   const int OffLong   = 70  / portTICK_PERIOD_MS;     // (time in ms) Long-Off =  =
+
+  if (signalLedQueue == NULL) {
+    vTaskDelete(NULL);
+    return;
+  }
 
   char  msg[MAX_SIGNAL_MSG_LEN];
   for(;;) {

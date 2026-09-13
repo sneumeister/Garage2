@@ -1,0 +1,11 @@
+---
+description: Do not run PlatformIO builds unless the user asks
+alwaysApply: true
+---
+
+# Build / Compile
+
+- Do **not** run `pio run`, `pio run -t clean`, or other PlatformIO compile/upload/monitor commands on your own after code changes.
+- Leave building and flashing to the user.
+- Only run a build when the user explicitly asks (e.g. „baue“, „compile“, `pio run`).
+- After edits, briefly note what changed; do not verify by compiling unless requested.
